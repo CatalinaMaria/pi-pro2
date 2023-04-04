@@ -13,7 +13,25 @@
 			</div>
 			<!-- Show the "ultimos" products -->
 			<!-- ACA EL FORMULARIO!! -->
-
+			<div class="form">
+			<form action="/users/profile" method="get" class="formulario">
+				<div class="campos">
+				<label for="" class="correo">Email:</label>
+				<input type="email" name="mail" value="">
+				<label for="" class="user">Nombre de usuario:</label>
+				<input type="text" name="usuario" value="">
+				<label for="" class="pass">Contraseña:</label>
+				<input type="contraseña" name="password" value="">
+				<label for="" class="día">Fecha de nacimiento:</label>
+				<input type="date" name="fecha" value="">
+				<label for="" class="doc">DNI:</label>
+				<input type="number" name="documento" value="">
+				<label for="" class="foto">Foto de perfil:</label>
+				<input type="text" name="pic" value="">
+				</div>
+				<button type="submit">Finalizar registro</button>
+			</form>
+		</div>
 
 	<!-- footer -->
 	<%- include('./partials/footer.ejs') %>
