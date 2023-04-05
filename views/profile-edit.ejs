@@ -14,20 +14,20 @@
 			<!-- Show the "ultimos" products -->
 			<h2 class="col-12"> 
 				<div class="form">
-					<form action="/users/myprofile" method="get" class="formulario">
+					<form action="/users/myprofile" method="get" class="form-registro">
 						<div class="campos">
-						<label for="" class="correo">Email:</label>
-						<input type="email" name="mail" value="">
-						<label for="" class="user">Nombre de usuario:</label>
-						<input type="text" name="usuario" value="">
-						<label for="" class="pass">Contraseña:</label>
-						<input type="contraseña" name="password" value="">
-						<label for="" class="día">Fecha de nacimiento:</label>
-						<input type="date" name="fecha" value="">
-						<label for="" class="doc">DNI:</label>
-						<input type="number" name="documento" value="">
-						<label for="" class="foto">Foto de perfil:</label>
-						<input type="text" name="pic" value="">
+						<label for="" name="correo" >Email:</label>
+						<input type="email" name="mail" class="control" value="<%- usuarios.email %>">
+						<label for="" name="user">Nombre de usuario:</label>
+						<input type="text" name="usuario" class="control" value="<%- usuarios.nombre %>">
+						<label for="" name="pass">Contraseña:</label>
+						<input type="contraseña" name="password" class="control" value="<%- usuarios.contrasenia %>">
+						<label for="" name="día">Fecha de nacimiento:</label>
+						<input type="date" name="fecha" class="control" value="<%- usuarios.fechanacimiento %>">
+						<label for="" name="dni">DNI:</label>
+						<input type="number" name="documento" class="control" value="<%- usuarios.dni %>">
+						<label for="" name="foto">Foto de perfil:</label>
+						<input type="file" name="pic" class="control" value="<%- usuarios.fotoperfil %>">
 						</div>
 						<button class="boton" type="submit">Guardar cambios</button>
 					</form>
