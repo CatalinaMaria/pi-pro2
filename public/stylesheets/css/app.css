@@ -517,6 +517,13 @@ textarea.form-input {
   margin: 10px 0;
   font-size: 18px;
 }
+.form-registro p{
+  font-family: 'calibri';
+  font-size: 15px;
+  color: white;
+  text-align: center;
+}
+
 
 /*====== Media-Queries ======*/
 @media (min-width: 768px) {

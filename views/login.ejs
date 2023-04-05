@@ -8,23 +8,20 @@
 	<!-- Novedades -->
 	<div class="container products-wrapper">
 		<div class="row">
-			<div class="col-12">
-				<h2 class="products-title">Ingresar</h2>
-			</div>
+			
 			<!-- Show the "ultimos" products -->
 			<h2 class="col-12"> 
 
 				<div class="form">
 					<form action="/profileprofile" method="get" class="formulario"></form>	
-					<div class="campos">
-						<label for="" class="correo">Email:</label>
-						<input type="email" name="mail" value="">
-						<label for="" class="pass">Contraseña:</label>
-						<input type="contraseña" name="password" value="">
-						<label for="" class="recuerdo">Recuerdame</label>
-						<input type="checkbox" name="remember" value="">
-					</div>
-					<button class="boton" type="submit">Iniciar sesión</button>
+					<section class="form-registro">
+						<h4> Ingresar</h4>
+						<input type="email" name="mail" value="" class="control" placeholder="email">
+						<input type="contraseña" name="password" value="" class="control" placeholder="contraseña">
+						<p>Recuerdame <input type="checkbox" name="remember" value="" class="checkbox"> </p> 
+						<button class="boton" type="submit" class="boton">Iniciar sesión</button>
+
+					</section>
 				</form>
 			</div>
 
