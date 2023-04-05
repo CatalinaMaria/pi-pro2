@@ -54,6 +54,10 @@ img {
   width: 100%;
 }
 
+.imgproducto{
+  height: 390px;
+}
+
 input,
 textarea {
   font-family: inherit;
@@ -196,6 +200,7 @@ hr {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+  min-height: 87px;
 }
 
 .product-box_data h2 {
