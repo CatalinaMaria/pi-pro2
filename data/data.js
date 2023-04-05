@@ -1,5 +1,12 @@
 const data = {
-    usuarios: [],
+    usuarios: {
+        email: 'cata@gmail.com',
+        nombre:'Cata ',
+        contrasenia: 'contrasenia',
+        fechanacimiento: '21/02/2005',
+        dni: '4666666',
+        fotoperfil: '/images/users/fotoperfil1.jpg' ,
+    },
     productos: [
         {
             imagen: 'images/products/acotar.webp',
@@ -62,7 +69,13 @@ const data = {
             fecha: 4 / 02 / 2023,
         },
     ],
-    comentarios: [],
+    comentarios: [
+        {
+
+    },
+    {
+
+    }],
 }
 
 module.exports = data;

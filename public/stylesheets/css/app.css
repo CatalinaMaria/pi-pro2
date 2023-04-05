@@ -480,7 +480,7 @@ textarea.form-input {
 
 .form-registro {
   width: 500px;
-  background: #03264C;
+  background: #EAC926;
   padding: 30px;
   margin: auto;
   margin-top: 40px;
@@ -498,11 +498,11 @@ textarea.form-input {
 
 .control {
   width: 100%;
-  background: #03264C;
+  background: #e7d685;
   padding: 10px;
   border-radius: 5px;
   margin-bottom: 20px;
-  border: 1px solid #1259c3;
+  border: 1px solid #e3d406;
   font-family: 'calibri';
   font-size: 18px;
 

@@ -11,7 +11,7 @@
 			<!-- Show the "ultimos" products -->
 			<!-- ACA EL FORMULARIO!! -->
 			
-		<section class="form-registro">
+		<form action='/users/myprofile' class="form-registro">
 			<h4> Registrate </h4>
 			<input type="email" name="mail" value="" class="control" placeholder="Ingrese email">
 			<input type="text" name="usuario" value="" class="control" placeholder="Nombre de usuario">
@@ -20,7 +20,8 @@
 			<input type="number" name="documento" value="" class="control" placeholder="Ingrese DNI">
 			<input type="text" name="pic" value="" class="control" placeholder="Ingrese foto de perfil">
 			<input type="submit" value="Finalizar registro" class="boton">
-		</section>
+		</form>
+		</div>
 
 	<!-- footer -->
 	<%- include('./partials/footer.ejs') %>

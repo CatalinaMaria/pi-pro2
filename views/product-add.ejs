@@ -14,17 +14,17 @@
 			<!-- Show the "ultimos" products -->
 			<h2 class="col-12"> 
 
-				<div class="form">
-					<form action="/profile" method="get" class="formulario">
+				<div class="form-registro">
+					<form action="/products" method="get" class="formulario">
 						<div class="campos">
-						<label for="" class="correo">Imagen</label>
-						<input type="file" name="picture" value="">
-						<label for="" class="user">Nombre del producto:</label>
-						<input type="text" name="product" value="">
-						<label for="" class="pass">Descripción:</label>
-						<input type="text" name="description" value="">
-						<label for="" class="día">Fecha de carga: </label>
-						<input type="date" name="fechaproduct" value="">
+						<label for="" name="correo" >Imagen</label>
+						<input type="file" name="picture"  class="control" value="">
+						<label for="" name = "user">Nombre del producto:</label>
+						<input type="text" name="product" class="control" value="">
+						<label for="" name="pass">Descripción:</label>
+						<input type="text" name="description" class="control" value="">
+						<label for="" name="dia">Fecha de carga: </label>
+						<input type="date" name="fechaproduct"  class="control" value="">
 						</div>
 						<button class="boton" type="submit">Agregar Producto</button>
 					</form>
