@@ -8,30 +8,19 @@
 	<!-- Novedades -->
 	<div class="container products-wrapper">
 		<div class="row">
-			<div class="col-12">
-				<h2 class="products-title">Registrate</h2>
-			</div>
 			<!-- Show the "ultimos" products -->
 			<!-- ACA EL FORMULARIO!! -->
-			<div class="form">
-			<form action="/users/myprofile" method="get" class="formulario">
-				<div class="campos">
-				<label for="" class="correo">Email:</label>
-				<input type="email" name="mail" value="">
-				<label for="" class="user">Nombre de usuario:</label>
-				<input type="text" name="usuario" value="">
-				<label for="" class="pass">Contraseña:</label>
-				<input type="contraseña" name="password" value="">
-				<label for="" class="día">Fecha de nacimiento:</label>
-				<input type="date" name="fecha" value="">
-				<label for="" class="doc">DNI:</label>
-				<input type="number" name="documento" value="">
-				<label for="" class="foto">Foto de perfil:</label>
-				<input type="text" name="pic" value="">
-				</div>
-				<button class="boton" type="submit">Finalizar registro</button>
-			</form>
-		</div>
+			
+		<section class="form-registro">
+			<h4> Registrate </h4>
+			<input type="email" name="mail" value="" class="control" placeholder="Ingrese email">
+			<input type="text" name="usuario" value="" class="control" placeholder="Nombre de usuario">
+			<input type="contraseña" name="password" value="" class="control" placeholder="Ingrese contraseña">
+			<input type="date" name="fecha" value="" class="control" placeholder="Ingrese fecha de nacimiento">
+			<input type="number" name="documento" value="" class="control" placeholder="Ingrese DNI">
+			<input type="text" name="pic" value="" class="control" placeholder="Ingrese foto de perfil">
+			<input type="submit" value="Finalizar registro" class="boton">
+		</section>
 
 	<!-- footer -->
 	<%- include('./partials/footer.ejs') %>
