@@ -16,17 +16,17 @@
 				<div class="form">
 					<form action="/users/myprofile" method="get" class="form-registro">
 						<div class="campos">
-						<label for="" name="correo" >Email:</label>
+						<label for="" name="correo" class="" >Email:</label>
 						<input type="email" name="mail" class="control" value="<%- usuarios.email %>">
-						<label for="" name="user">Nombre de usuario:</label>
+						<label for="" name="user" class="" >Nombre de usuario:</label>
 						<input type="text" name="usuario" class="control" value="<%- usuarios.nombre %>">
-						<label for="" name="pass">Contraseña:</label>
+						<label for="" name="pass" class="">Contraseña:</label>
 						<input type="contraseña" name="password" class="control" value="<%- usuarios.contrasenia %>">
-						<label for="" name="día">Fecha de nacimiento:</label>
+						<label for="" name="día" class="">Fecha de nacimiento:</label>
 						<input type="date" name="fecha" class="control" value="<%- usuarios.fechanacimiento %>">
-						<label for="" name="dni">DNI:</label>
+						<label for="" name="dni" class="">DNI:</label>
 						<input type="number" name="documento" class="control" value="<%- usuarios.dni %>">
-						<label for="" name="foto">Foto de perfil:</label>
+						<label for="" name="foto" class="">Foto de perfil:</label>
 						<input type="file" name="pic" class="control" value="<%- usuarios.fotoperfil %>">
 						</div>
 						<button class="boton" type="submit">Guardar cambios</button>
