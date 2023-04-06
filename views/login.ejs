@@ -1,33 +1,32 @@
-<%- include('./partials/head.ejs') %>	
+<%- include('./partials/head.ejs') %>
 
-<body>
-	<!-- Header -->
-	<%- include('./partials/headernoLogueado.ejs') %>
-	<!-- /Header -->
+	<body>
+		<!-- Header -->
+		<%- include('./partials/headernoLogueado.ejs') %>
+			<!-- /Header -->
 
-	<!-- Novedades -->
-	<div class="container products-wrapper">
-		<div class="row">
-			
-			<!-- Show the "ultimos" products -->
-			<h2 class="col-12"> 
+			<!-- Novedades -->
+			<div class="container products-wrapper">
+				<div class="row">
 
-				<div class="form-registro">
-					<form action="/users/myprofile" method="GET" class="formulario">	
-						<h4> Ingresar</h4>
-						<input type="email" name="mail" value="" class="control" placeholder="email">
-						<input type="contraseña" name="password" value="" class="control" placeholder="contraseña">
-						<p>Recordame <input type="checkbox" name="remember" value="Recuerdame" class="checkbox"> </p> 
-						<button class="boton" type="submit" >Iniciar sesión</button>
-					</form>
-				</div>
+					<!-- Show the "ultimos" products -->
 
+					<div class="form-registro">
+						<form action="/users/myprofile" method="GET" class="formulario">
+							<h4> Ingresar</h4>
+							<input type="email" name="mail" value="" class="control" placeholder="email">
+							<input type="contraseña" name="password" value="" class="control" placeholder="contraseña">
+							<p>Recordame <input type="checkbox" name="remember" class="checkbox"> </p>
+							<button class="boton" type="submit">Iniciar sesión</button>
+						</form>
+					</div>
 
 
 
-	<!-- footer -->
-	<%- include('./partials/footer.ejs') %>
-	<!-- /footer -->
-</body>
 
-</html>
+					<!-- footer -->
+					<%- include('./partials/footer.ejs') %>
+						<!-- /footer -->
+	</body>
+
+	</html>

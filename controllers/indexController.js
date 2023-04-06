@@ -2,10 +2,10 @@ const data= require('../data/data');
 
 const indexController = {
     index: function(req, res) {
-        res.render('index', {products: data.productos});
+        res.render('index', {products: data.productos, comentarios: data.comentarios});
       },
     searchresults: function (req, res){
-      res.render('search-results');
+      res.render('search-results', {products: data.productos, comentarios: data.comentarios});
     },
 };
 
