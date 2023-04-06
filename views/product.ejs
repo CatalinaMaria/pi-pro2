@@ -23,56 +23,17 @@
 
 				<div class="col-12 col-lg-4">
 					<section class="comments">
-						<article>
-							<img src="/images/users/fotoperfil1.jpg" alt="">
-							<div class="data">
-								<p class="user">
-								<strong> <a href="/profile"><%- comentarios[0].nombreusuario %> </a> </strong>
-								<%- comentarios[0].textocom %></p>
-							</div>
-						</article>
-						<article>
-							<img src="/images/users/fotoperfil1.jpg" alt="">
-							<div class="data">
-								<p class="user">
-									<strong> <a href="/profile"><%- comentarios[1].nombreusuario %> </a> </strong>
-									<%- comentarios[1].textocom %></p>
-							</div>
-						</article>
-						<article>
-							<img src="/images/users/fotoperfil1.jpg" alt="">
-							<div class="data">
-								<p class="user">
-									<strong> <a href="/profile"><%- comentarios[2].nombreusuario %> </a> </strong>
-									<%- comentarios[2].textocom %>
-									</p>
-							</div>
-						</article>
-						<article>
-							<img src="/images/users/fotoperfil1.jpg" alt="">
-							<div class="data">
-								<p class="user">
-									<strong> <a href="/profile"><%- comentarios[3].nombreusuario %></a> </strong>
-									<%- comentarios[3].textocom %></p>
-							</div>
-						</article>
-						<article>
-							<img src="/images/users/fotoperfil1.jpg" alt="">
-							<div class="data">
-								<p class="user">
-									<strong> <a href="/profile"><%- comentarios[4].nombreusuario %></a> </strong>
-									<%- comentarios[4].textocom %></p>
-							</div>
-						</article>
-						<article>
-							<img src="/images/users/fotoperfil1.jpg" alt="">
-							<div class="data">
-								<p class="user">
-									<strong> <a href="/profile"><%- comentarios[5].nombreusuario %></a> </strong>
-									<%- comentarios[5].textocom %></p>
-							</div>
-						</article>
-
+						<% for( let i = 0; i < comentarios.length; i++ )  { %>
+							<article>
+								<img src="/images/users/fotoperfil1.jpg" alt="">
+								<div class="data">
+									<p class="user">
+										<strong> <a href="/profile"><%- comentarios[i].nombreusuario %> </a>
+										</strong> <%- comentarios[i].textocom %></p>
+									
+								</div>
+							</article> <% } %>
+				
 					</section>
 					<form class="form" action="" method="get">
 						<input class="form-input" type="text" value="" placeholder="Agregar comentario">
