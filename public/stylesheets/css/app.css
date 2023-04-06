@@ -78,7 +78,7 @@ hr {
 /*====== Main Header ======*/
 .main-header {
   padding: 5px 0 10px 0;
-  background-color: #5F866F;
+  background-color: #21473e;
 }
 
 .main-header_home-link,
@@ -529,7 +529,7 @@ textarea.form-input {
 
 .form-registro .boton {
   width: 100%;
-  background: #405a4b;
+  background: #21473e;
   border: none;
   padding: 10px;
   color: white;
