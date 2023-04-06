@@ -83,32 +83,32 @@ const data = {
     ],
     comentarios: [
         {
-            nombreusuario: 'Tony Stark',
+            nombreusuario: 'TonyStark',
             textocom: 'Una historia fascinante y una edición divina. Les encantará a todos.',
             fotoperfil: '/images/users/default-image.png',
         },
         {
-            nombreusuario: 'Steve Rogers',
+            nombreusuario: 'SteveRogers',
             textocom: 'Los clásicos nunca pasan de moda, y esta no es la excepción. Una historia encantadora con un mensaje sin igual',
             fotoperfil: '/images/users/default-image.png',
         },
         {
-            nombreusuario: 'Bruce Banner',
+            nombreusuario: 'BruceBanner',
             textocom: 'That was both horrible and incredible at the same time, and my thoughts are a whirlwind.',
             fotoperfil: '/images/users/default-image.png',
         },
         {
-            nombreusuario: 'Natasha Romanov',
+            nombreusuario: 'NatashaRomanov',
             textocom: 'This was a solid start to this new series! I am really interested to see where things go. I did find a few things to be a bit questionable, but I cant say what they are because HELLO SPOILERS. I will be doing a full review/discussion on this sooooooon!',
             fotoperfil: '/images/users/default-image.png',
         },
         {
-            nombreusuario: 'Wanda Maximoff',
+            nombreusuario: 'WandaMaximoff',
             textocom: 'This book was amazing! The romance was borderline new adult which I loved but it was also greatly paced. The plot was so well thought out and executed as well.',
             fotoperfil: '/images/users/default-image.png',
         },
         {
-            nombreusuario: 'Steven Grant',
+            nombreusuario: 'StevenGrant',
             textocom: 'I’m a second away from dousing myself in gasoline and lighting myself on fire just so I never have to look at this book again.',
             fotoperfil: '/images/users/default-image.png',
         },],
