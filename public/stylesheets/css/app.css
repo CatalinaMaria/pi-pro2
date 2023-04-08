@@ -392,7 +392,7 @@ hr {
 
 .buy-now-button {
   background-color: #405a4b;
-  font-size: 1.6em;
+  font-size: 18px;
   color: white;
   padding: 15px;
   border-radius: 8px;
@@ -512,12 +512,10 @@ textarea.form-input {
 }
 
 .form-registro h4 {
-  font-size: 35px;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   margin-top: 10px;
   color: white;
   text-align: center;
-  font-family: 'gill sans';
 }
 
 .control {

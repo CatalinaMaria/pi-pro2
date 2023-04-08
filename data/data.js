@@ -1,7 +1,7 @@
 const data = {
     usuarios: {
         email: 'c@gmail.com',
-        nombre: 'Cata ',
+        nombre: 'Mia ',
         contrasenia: 'contrasenia',
         fechanacimiento: '21/02/2005',
         dni: '4666666',
