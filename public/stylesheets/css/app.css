@@ -45,6 +45,7 @@ a {
   display: inline-block;
   text-decoration: none;
   color: inherit;
+  font-family: 'arial';
 }
 
 figure {
@@ -91,6 +92,7 @@ hr {
   margin-top: 20px;
   text-align: center;
   color: white;
+  font-family: 'arial';
 }
 
 .search-form {
@@ -141,6 +143,7 @@ hr {
 .right-navbar {
   font-size: 1.5em;
   color: white;
+  font-family: 'arial';
 }
 
 .logout{
@@ -160,6 +163,7 @@ hr {
   display: block;
   padding: 5px 0;
   border-bottom: solid 1px var(--gray);
+  font-family: 'arial';
 }
 
 
@@ -181,9 +185,10 @@ hr {
 }
 
 .products-title {
-  font-size: 2.4em;
+  font-size: 30px;
   font-weight: 400;
   color: var(--gray);
+  font-family:'Gill Sans';
 }
 
 .product-box {
@@ -512,6 +517,7 @@ textarea.form-input {
   margin-top: 10px;
   color: white;
   text-align: center;
+  font-family: 'gill sans';
 }
 
 .control {
