@@ -8,7 +8,7 @@ const usersController = {
         res.render('login')
     },
     profile: function (req, res){
-        res.render('profile' , {usuarios: data.usuarios})
+        res.render('profile' , {usuarios: data.usuarios, products: data.productos, comentarios: data.comentarios})
     },
     edit: function (req,res){
         res.render('profile-edit', {usuarios: data.usuarios})
