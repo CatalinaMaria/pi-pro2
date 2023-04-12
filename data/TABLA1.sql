@@ -58,5 +58,5 @@ insert into comentarios (idComentario,idUsuario,commentario)
 values(1,1,"Una historia fascinante y una edición divina. Les encantará a todos."),
 (2,2,"Los clásicos nunca pasan de moda, y esta no es la excepción. Una historia encantadora con un mensaje sin igual"),
 (3,3,"That was both horrible and incredible at the same time, and my thoughts are a whirlwind."),
-(4,4,"I am a second away from dousing myself in gasoline and lighting myself on fire just so I never have to look at this book again."),
+(4,4,"I am a second away from dousing myself in gasoline and lighting myself on fire just so I never have to look at this book again.");
 
