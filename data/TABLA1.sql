@@ -37,13 +37,13 @@ deletedAt timestamp null
 insert into usuarios (id,email,contraseña,fotoPerfil,fecha,dni)
 values(1,"m@gmail.com","m","/images/users/default-image.png","03-04-23",45014441);
 insert into usuarios (email,contraseña,fotoPerfil,fecha,dni)
-values("email2@gmail.com","marich","/images/users/default-image.png","03-04-23",45014442);
+values(2,"email2@gmail.com","marich","/images/users/default-image.png","03-04-23",45014442);
 insert into usuarios (email,contraseña,fotoPerfil,fecha,dni)
-values("email3@gmail.com","ma","/images/users/default-image.png","03-04-23",45014443);
+values(3,"email3@gmail.com","ma","/images/users/default-image.png","03-04-23",45014443);
 insert into usuarios (email,contraseña,fotoPerfil,fecha,dni)
-values("email4@gmail.com","mar","/images/users/default-image.png","03-04-23",45014444);
+values(4,"email4@gmail.com","mar","/images/users/default-image.png","03-04-23",45014444);
 insert into usuarios (email,contraseña,fotoPerfil,fecha,dni)
-values("email5@gmail.com","mare","/images/users/default-image.png","03-04-23",45014445);
+values(5,"email5@gmail.com","mare","/images/users/default-image.png","03-04-23",45014445);
 
 insert into productos (idProducto,nombreProducto,descripcion,clienteId)
 values(1,"Pride and Prejudice","'A classic Jane Austen novel. Pride and Prejudice follows the turbulent relationship between Elizabeth Bennet, the daughter of a country gentleman, and Fitzwilliam Darcy, a rich aristocratic landowner. They must overcome the titular sins of pride and prejudice in order to fall in love and marry.",1);
@@ -80,6 +80,102 @@ values(3,13,"That was both horrible and incredible at the same time, and my thou
 insert into comentarios (idComentario,idUsuario,commentario)
 values(4,4,"I am a second away from dousing myself in gasoline and lighting myself on fire just so I never have to look at this book again.");
 
+insert into comentarios (idComentario,idUsuario,commentario)
+values(5,5,"");
+insert into comentarios (idComentario,idUsuario,commentario)
+values(1,1,"");
+insert into comentarios (idComentario,idUsuario,commentario)
+values(2,2,"");
+insert into comentarios (idComentario,idUsuario,commentario)
+values(3,3,"");
+
+insert into comentarios (idComentario,idUsuario,commentario)
+values(4,4,"");
+insert into comentarios (idComentario,idUsuario,commentario)
+values(5,5,"");
+insert into comentarios (idComentario,idUsuario,commentario)
+values(1,1,"");
+insert into comentarios (idComentario,idUsuario,commentario)
+values(2,2,"");
+
+insert into comentarios (idComentario,idUsuario,commentario)
+values(3,3,"");
+insert into comentarios (idComentario,idUsuario,commentario)
+values(4,4,"");
+insert into comentarios (idComentario,idUsuario,commentario)
+values(5,5,"");
+insert into comentarios (idComentario,idUsuario,commentario)
+values(1,1,"");
+
+insert into comentarios (idComentario,idUsuario,commentario)
+values(1,1,"");
+insert into comentarios (idComentario,idUsuario,commentario)
+values(2,2,"");
+insert into comentarios (idComentario,idUsuario,commentario)
+values(3,3,"");
+insert into comentarios (idComentario,idUsuario,commentario)
+values(4,4,"");
+
+insert into comentarios (idComentario,idUsuario,commentario)
+values(5,5,"");
+insert into comentarios (idComentario,idUsuario,commentario)
+values(1,1,"");
+insert into comentarios (idComentario,idUsuario,commentario)
+values(2,2,"");
+insert into comentarios (idComentario,idUsuario,commentario)
+values(3,3,"");
+
+insert into comentarios (idComentario,idUsuario,commentario)
+values(4,4,"");
+insert into comentarios (idComentario,idUsuario,commentario)
+values(5,5,"");
+insert into comentarios (idComentario,idUsuario,commentario)
+values(1,1,"");
+insert into comentarios (idComentario,idUsuario,commentario)
+values(2,2,"");
+
+insert into comentarios (idComentario,idUsuario,commentario)
+values(3,3,"");
+insert into comentarios (idComentario,idUsuario,commentario)
+values(4,4,"");
+insert into comentarios (idComentario,idUsuario,commentario)
+values(5,5,"");
+insert into comentarios (idComentario,idUsuario,commentario)
+values(1,1,"");
+
+values(2,2,"");
+insert into comentarios (idComentario,idUsuario,commentario)
+values(3,3,"");
+insert into comentarios (idComentario,idUsuario,commentario)
+values(4,4,"");
+insert into comentarios (idComentario,idUsuario,commentario)
+values(5,5,"");
+
+values(1,1,"");
+insert into comentarios (idComentario,idUsuario,commentario)
+values(2,2,"");
+insert into comentarios (idComentario,idUsuario,commentario)
+values(3,3,"");
+insert into comentarios (idComentario,idUsuario,commentario)
+values(4,4,"");
+
+insert into comentarios (idComentario,idUsuario,commentario)
+values(5,5,"");
+insert into comentarios (idComentario,idUsuario,commentario)
+values(1,1,"");
+insert into comentarios (idComentario,idUsuario,commentario)
+values(2,2,"");
+insert into comentarios (idComentario,idUsuario,commentario)
+values(3,3,"");
+
+insert into comentarios (idComentario,idUsuario,commentario)
+values(4,4,"");
+insert into comentarios (idComentario,idUsuario,commentario)
+values(5,5,"");
+insert into comentarios (idComentario,idUsuario,commentario)
+values(1,1,"");
+insert into comentarios (idComentario,idUsuario,commentario)
+values(2,2,"");
 
 SELECT * FROM usuarios;
 SELECT * FROM productos;
