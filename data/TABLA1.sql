@@ -81,40 +81,40 @@ insert into comentarios (idComentario,idUsuario,commentario)
 values(4,4,"I am a second away from dousing myself in gasoline and lighting myself on fire just so I never have to look at this book again.");
 
 insert into comentarios (idComentario,idUsuario,commentario)
-values(5,5,"");
+values(5,5,"Un libro que te captura desde el primer momento.");
 insert into comentarios (idComentario,idUsuario,commentario)
-values(1,1,"");
+values(1,1,"Me lo devoré en dos días porque no podía parar de leer sobre el fantástico mundo de Caraval.");
 insert into comentarios (idComentario,idUsuario,commentario)
-values(2,2,"");
+values(2,2,"Super recomendado <3");
 insert into comentarios (idComentario,idUsuario,commentario)
-values(3,3,"");
+values(3,3,"Uno de los libros mejor estructurado qué leído en mi vida.");
 
 insert into comentarios (idComentario,idUsuario,commentario)
-values(4,4,"");
+values(4,4,"Es una trama qué te atrapa de principio a fin.");
 insert into comentarios (idComentario,idUsuario,commentario)
-values(5,5,"");
+values(5,5,"me encanto todo de este libro, desde la trama hasta como escribe la autora, es buenisima y super recomiendo sus libros!");
 insert into comentarios (idComentario,idUsuario,commentario)
-values(1,1,"");
+values(1,1,"¡¡Me encantó!! Ese mundo mágico y todos los engaños aaaa me explotó la cabeza el final.");
 insert into comentarios (idComentario,idUsuario,commentario)
-values(2,2,"");
+values(2,2,"Lean esta joya de libro por favor, no se van a arrepentir.");
 
 insert into comentarios (idComentario,idUsuario,commentario)
-values(3,3,"");
+values(3,3,"uno de los mejores libros que pueden existir en este vida ...");
 insert into comentarios (idComentario,idUsuario,commentario)
-values(4,4,"");
+values(4,4,"el libro es realmente increíble y sorprendente");
 insert into comentarios (idComentario,idUsuario,commentario)
-values(5,5,"");
+values(5,5,"Me gusto un monton, mega atrapante, lo super recomiendo");
 insert into comentarios (idComentario,idUsuario,commentario)
-values(1,1,"");
+values(1,1,"El mejor libro que pude haber leído quisiera poder volver al pasado para leerlo por primera vez");
 
 insert into comentarios (idComentario,idUsuario,commentario)
-values(1,1,"");
+values(1,1,"Es mi novela favorita, es lo mejor que he visto. Historia muy realista");
 insert into comentarios (idComentario,idUsuario,commentario)
-values(2,2,"");
+values(2,2,"Me encanta este libro. Definitivamente, uno de mis favoritos.");
 insert into comentarios (idComentario,idUsuario,commentario)
-values(3,3,"");
+values(3,3,"Este libro me hizo amar la lectura, desde entonces no puedo parar.");
 insert into comentarios (idComentario,idUsuario,commentario)
-values(4,4,"");
+values(4,4,"Es lo más lindo que he leído me encanto");
 
 insert into comentarios (idComentario,idUsuario,commentario)
 values(5,5,"");
