@@ -65,6 +65,10 @@ insert into productos (idProducto,nombreProducto,descripcion,clienteId)
 values(9,"The hand maids tale","A classic of modern literature. The Handmaids Tale, acclaimed dystopian novel by Canadian author Margaret Atwood, published in 1985. The book, set in New England in the near future, posits a Christian fundamentalist theocratic regime in the former United States that arose as a response to a fertility crisis.",1);
 insert into productos (idProducto,nombreProducto,descripcion,clienteId)
 values(10,"Little Women","The classic has come back in the best edition ever made. With their father fighting in the American Civil War, sisters Jo, Meg, Amy and Beth are at home with their mother, a very outspoken woman for her time. The story tells of how the sisters grow up, find love, and find their place in the world. Four sisters and their mother at home. Their father is fighting in the war.",12);
+insert into productos (idProducto,nombreProducto,descripcion,clienteId)
+values(11,"A court of thorns and roses","First book of the ACOTAR series written by Sarah J Maas. A Court of Thorns and Roses is a young adult high fantasy series by Sarah J. Maas. The saga begins when Feyre Archeron, a 19-year-old huntress, is kidnapped and brought to the faerie lands of Prythian after she kills a faerie wolf. Her kidnapper is Tamlin, a High Fae and one of the seven High Lords of Prythian.",12);
+insert into productos (idProducto,nombreProducto,descripcion,clienteId)
+values(12,"House of Earth and blood","The first Crescent City novel. Meet Bryce Quinland and Hunt Atalar. Bryce Quinlan had the perfect life-working hard all day and partying all night-until a demon murdered her closest friends, leaving her bereft, wounded, and alone. When the accused is behind bars but the crimes start up again, Bryce finds herself at the heart of the investigation.",12);
 
 
 insert into comentarios (idComentario,idUsuario,commentario)
