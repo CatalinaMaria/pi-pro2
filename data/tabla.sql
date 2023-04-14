@@ -24,7 +24,8 @@ deletedAt timestamp null
 );
 
 create table comentarios (
-idComentario int unsigned primary key auto_increment,
+id int unsigned primary key auto_increment,
+idComentario int unsigned,
 foreign key (idComentario) references productos(idProducto),
 idUsuario int unsigned,
 foreign key (idUsuario) references usuarios(id),
@@ -36,14 +37,14 @@ deletedAt timestamp null
 
 insert into usuarios (id,email,contraseña,fotoPerfil,fecha,dni)
 values(1,"m@gmail.com","m","/images/users/default-image.png","03-04-23",45014441);
-insert into usuarios (email,contraseña,fotoPerfil,fecha,dni)
-values(2,"email2@gmail.com","marich","/images/users/default-image.png","03-04-23",45014442);
-insert into usuarios (email,contraseña,fotoPerfil,fecha,dni)
-values(3,"email3@gmail.com","ma","/images/users/default-image.png","03-04-23",45014443);
-insert into usuarios (email,contraseña,fotoPerfil,fecha,dni)
-values(4,"email4@gmail.com","mar","/images/users/default-image.png","03-04-23",45014444);
-insert into usuarios (email,contraseña,fotoPerfil,fecha,dni)
-values(5,"email5@gmail.com","mare","/images/users/default-image.png","03-04-23",45014445);
+insert into usuarios (id,email,contraseña,fotoPerfil,fecha,dni)
+values(12,"email2@gmail.com","marich","/images/users/default-image.png","03-04-23",45014442);
+insert into usuarios (id,email,contraseña,fotoPerfil,fecha,dni)
+values(13,"email3@gmail.com","ma","/images/users/default-image.png","03-04-23",45014443);
+insert into usuarios (id,email,contraseña,fotoPerfil,fecha,dni)
+values(14,"email4@gmail.com","mar","/images/users/default-image.png","03-04-23",45014444);
+insert into usuarios (id,email,contraseña,fotoPerfil,fecha,dni)
+values(15,"email5@gmail.com","mare","/images/users/default-image.png","03-04-23",45014445);
 
 insert into productos (idProducto,nombreProducto,descripcion,clienteId)
 values(1,"Pride and Prejudice","'A classic Jane Austen novel. Pride and Prejudice follows the turbulent relationship between Elizabeth Bennet, the daughter of a country gentleman, and Fitzwilliam Darcy, a rich aristocratic landowner. They must overcome the titular sins of pride and prejudice in order to fall in love and marry.",1);
@@ -78,104 +79,104 @@ values(2,12,"Los clásicos nunca pasan de moda, y esta no es la excepción. Una 
 insert into comentarios (idComentario,idUsuario,commentario)
 values(3,13,"That was both horrible and incredible at the same time, and my thoughts are a whirlwind.");
 insert into comentarios (idComentario,idUsuario,commentario)
-values(4,4,"I am a second away from dousing myself in gasoline and lighting myself on fire just so I never have to look at this book again.");
+values(4,14,"I am a second away from dousing myself in gasoline and lighting myself on fire just so I never have to look at this book again.");
 
 insert into comentarios (idComentario,idUsuario,commentario)
-values(5,5,"Un libro que te captura desde el primer momento.");
+values(5,1,"Un libro que te captura desde el primer momento.");
 insert into comentarios (idComentario,idUsuario,commentario)
-values(1,1,"Me lo devoré en dos días porque no podía parar de leer sobre el fantástico mundo de Caraval.");
+values(6,1,"Me lo devoré en dos días porque no podía parar de leer sobre el fantástico mundo de Caraval.");
 insert into comentarios (idComentario,idUsuario,commentario)
-values(2,2,"Super recomendado <3");
+values(7,12,"Super recomendado <3");
 insert into comentarios (idComentario,idUsuario,commentario)
-values(3,3,"Uno de los libros mejor estructurado qué leído en mi vida.");
+values(8,13,"Uno de los libros mejor estructurado qué leído en mi vida.");
 
 insert into comentarios (idComentario,idUsuario,commentario)
-values(4,4,"Es una trama qué te atrapa de principio a fin.");
+values(9,14,"Es una trama qué te atrapa de principio a fin.");
 insert into comentarios (idComentario,idUsuario,commentario)
-values(5,5,"me encanto todo de este libro, desde la trama hasta como escribe la autora, es buenisima y super recomiendo sus libros!");
+values(10,14,"me encanto todo de este libro, desde la trama hasta como escribe la autora, es buenisima y super recomiendo sus libros!");
 insert into comentarios (idComentario,idUsuario,commentario)
-values(1,1,"¡¡Me encantó!! Ese mundo mágico y todos los engaños aaaa me explotó la cabeza el final.");
+values(11,14,"¡¡Me encantó!! Ese mundo mágico y todos los engaños aaaa me explotó la cabeza el final.");
 insert into comentarios (idComentario,idUsuario,commentario)
-values(2,2,"Lean esta joya de libro por favor, no se van a arrepentir.");
+values(12,12,"Lean esta joya de libro por favor, no se van a arrepentir.");
 
 insert into comentarios (idComentario,idUsuario,commentario)
-values(3,3,"uno de los mejores libros que pueden existir en este vida ...");
+values(1,13,"uno de los mejores libros que pueden existir en este vida ...");
 insert into comentarios (idComentario,idUsuario,commentario)
-values(4,4,"el libro es realmente increíble y sorprendente");
+values(2,14,"el libro es realmente increíble y sorprendente");
 insert into comentarios (idComentario,idUsuario,commentario)
-values(5,5,"Me gusto un monton, mega atrapante, lo super recomiendo");
+values(3,1,"Me gusto un monton, mega atrapante, lo super recomiendo");
 insert into comentarios (idComentario,idUsuario,commentario)
-values(1,1,"El mejor libro que pude haber leído quisiera poder volver al pasado para leerlo por primera vez");
+values(4,1,"El mejor libro que pude haber leído quisiera poder volver al pasado para leerlo por primera vez");
 
 insert into comentarios (idComentario,idUsuario,commentario)
-values(1,1,"Es mi novela favorita, es lo mejor que he visto. Historia muy realista");
+values(5,12,"Es mi novela favorita, es lo mejor que he visto. Historia muy realista");
 insert into comentarios (idComentario,idUsuario,commentario)
-values(2,2,"Me encanta este libro. Definitivamente, uno de mis favoritos.");
+values(6,12,"Me encanta este libro. Definitivamente, uno de mis favoritos.");
 insert into comentarios (idComentario,idUsuario,commentario)
-values(3,3,"Este libro me hizo amar la lectura, desde entonces no puedo parar.");
+values(7,13,"Este libro me hizo amar la lectura, desde entonces no puedo parar.");
 insert into comentarios (idComentario,idUsuario,commentario)
-values(4,4,"Es lo más lindo que he leído me encanto");
+values(8,14,"Es lo más lindo que he leído me encanto");
 
 insert into comentarios (idComentario,idUsuario,commentario)
-values(5,5,"una muy buena historia , se las recomiendo");
+values(9,1,"una muy buena historia , se las recomiendo");
 insert into comentarios (idComentario,idUsuario,commentario)
-values(1,1,"la historia es hermosa e interesante");
+values(10,1,"la historia es hermosa e interesante");
 insert into comentarios (idComentario,idUsuario,commentario)
-values(2,2,"La novela es tremendamente emocionante y llena de sorpresas en cada capítulo. El concepto de la amistad y amor que transmite deja una impresión fuerte, la recomiendo 100%.");
+values(11,12,"La novela es tremendamente emocionante y llena de sorpresas en cada capítulo. El concepto de la amistad y amor que transmite deja una impresión fuerte, la recomiendo 100%.");
 insert into comentarios (idComentario,idUsuario,commentario)
-values(3,3,"Le doy 5 por no poder darle 100, que maravilla de libro no hay palabras suficientes para describirlo.");
+values(12,13,"Le doy 5 por no poder darle 100, que maravilla de libro no hay palabras suficientes para describirlo.");
 
 insert into comentarios (idComentario,idUsuario,commentario)
-values(4,4,"Me encanto, sin duda fueron las 600 y algo de paginas mejor leídas de mi vida uwu");
+values(1,14,"Me encanto, sin duda fueron las 600 y algo de paginas mejor leídas de mi vida uwu");
 insert into comentarios (idComentario,idUsuario,commentario)
-values(5,5,"Sin duda, el mejor libro que leí en 2020");
+values(2,15,"Sin duda, el mejor libro que leí en 2020");
 insert into comentarios (idComentario,idUsuario,commentario)
-values(1,1,"Es un libro increíble, 100% recomendado.");
+values(3,1,"Es un libro increíble, 100% recomendado.");
 insert into comentarios (idComentario,idUsuario,commentario)
-values(2,2,"¡ME ENCANTA!, al principio creia que no era la gran cosa, pero cuando lo leí nunca pude dejar de leerlo es adictivo.");
+values(4,12,"¡ME ENCANTA!, al principio creia que no era la gran cosa, pero cuando lo leí nunca pude dejar de leerlo es adictivo.");
 
 insert into comentarios (idComentario,idUsuario,commentario)
-values(3,3,"Este libro me cambio la vida.");
+values(5,13,"Este libro me cambio la vida.");
 insert into comentarios (idComentario,idUsuario,commentario)
-values(4,4,"Este libro es uno de los mejores libros que he leído, tiene una historia absolutamente GENIAL ");
+values(6,14,"Este libro es uno de los mejores libros que he leído, tiene una historia absolutamente GENIAL ");
 insert into comentarios (idComentario,idUsuario,commentario)
-values(5,5,"Se lo recomiendo a cualquiera lector que esté buscando una mágica historia.");
+values(7,1,"Se lo recomiendo a cualquiera lector que esté buscando una mágica historia.");
 insert into comentarios (idComentario,idUsuario,commentario)
-values(1,1,"el mejor libro hasta ahora ( salvo unos pocos) y solo he leido 3 y espero con muchas ganas el cuarto bueno de principio a fin a mi siempre me ha gustado leer pero este supera a casi todos");
-
-values(2,2,"ME ENCANTA es tan bueno cuando lo lei por primera vez tarde como 2 meses en terminar de leerlo pero ya cuando le agarre gusto lo termine en 1 dia y medio");
+values(8,12,"el mejor libro hasta ahora ( salvo unos pocos) y solo he leido 3 y espero con muchas ganas el cuarto bueno de principio a fin a mi siempre me ha gustado leer pero este supera a casi todos");
 insert into comentarios (idComentario,idUsuario,commentario)
-values(3,3,"es genial 100% RECOMENDADO");
+values(9,12,"ME ENCANTA es tan bueno cuando lo lei por primera vez tarde como 2 meses en terminar de leerlo pero ya cuando le agarre gusto lo termine en 1 dia y medio");
 insert into comentarios (idComentario,idUsuario,commentario)
-values(4,4,"amé el libro. Es increíble! ");
+values(10,13,"es genial 100% RECOMENDADO");
 insert into comentarios (idComentario,idUsuario,commentario)
-values(5,5,"Me lo leí en un día y los 7 en un mes. Recomiendo leerlo");
-
+values(11,14,"amé el libro. Es increíble! ");
+insert into comentarios (idComentario,idUsuario,commentario)
+values(12,1,"Me lo leí en un día y los 7 en un mes. Recomiendo leerlo");
+insert into comentarios (idComentario,idUsuario,commentario)
 values(1,1,"Es muy adictivo y no puedo dejar de leerlo ya ni siquiera se en que año estamos");
 insert into comentarios (idComentario,idUsuario,commentario)
-values(2,2,"Es único!!! Un mundo que te entra en lo más hondo y te hace sentir parte de él");
+values(2,12,"Es único!!! Un mundo que te entra en lo más hondo y te hace sentir parte de él");
 insert into comentarios (idComentario,idUsuario,commentario)
-values(3,3,"Una historia realmente fascinante");
+values(3,13,"Una historia realmente fascinante");
 insert into comentarios (idComentario,idUsuario,commentario)
-values(4,4,"me encanto este libro la verdad fue genial");
+values(4,14,"me encanto este libro la verdad fue genial");
 
 insert into comentarios (idComentario,idUsuario,commentario)
-values(5,5,"Simplemente fantástico. ");
+values(5,1,"Simplemente fantástico. ");
 insert into comentarios (idComentario,idUsuario,commentario)
-values(1,1,"el mejor libro, realmente impresionante espero que siempre este disponible para todas las personas y vean lo maravilloso que es.");
+values(6,1,"el mejor libro, realmente impresionante espero que siempre este disponible para todas las personas y vean lo maravilloso que es.");
 insert into comentarios (idComentario,idUsuario,commentario)
-values(2,2,"Es el mejor libro que he leido en la vida!!! ojala hagan mas");
+values(7,12,"Es el mejor libro que he leido en la vida!!! ojala hagan mas");
 insert into comentarios (idComentario,idUsuario,commentario)
-values(3,3,"Solamente ame, el libro es increíble realmente vale la pena leerlo muy recomentada");
+values(8,13,"Solamente ame, el libro es increíble realmente vale la pena leerlo muy recomentada");
 
 insert into comentarios (idComentario,idUsuario,commentario)
-values(4,4,"es maravilloso este libro y toda la saga la trama es buenisima te atrapa por completo");
+values(9,14,"es maravilloso este libro y toda la saga la trama es buenisima te atrapa por completo");
 insert into comentarios (idComentario,idUsuario,commentario)
-values(5,5,"lo lei y es increible me quedo sin palabras");
+values(10,1,"lo lei y es increible me quedo sin palabras");
 insert into comentarios (idComentario,idUsuario,commentario)
-values(1,1,"Es el mejor libro que he leído, tiene muchas cosas que me encanta es fantástico.");
+values(11,1,"Es el mejor libro que he leído, tiene muchas cosas que me encanta es fantástico.");
 insert into comentarios (idComentario,idUsuario,commentario)
-values(2,2,"Es lo mejor es muy interesante y vale mucho la pena comprarlo");
+values(12,12,"Es lo mejor es muy interesante y vale mucho la pena comprarlo");
 
 SELECT * FROM usuarios;
 SELECT * FROM productos;
