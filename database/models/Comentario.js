@@ -6,21 +6,16 @@ module.exports = function (sequelize, dataTypes) {
             primaryKey : true,
             type: dataTypes.INTEGER
         },
-        email: {
-            type: dataTypes.STRING(400)
-        },
-        contraseña: {
-            type: dataTypes.STRING(400)
-        },
-        fotoPerfil: {
-            type: dataTypes.STRING(400)
-        },
-        fecha: {
-            type: dataTypes.DATE
-        },
-        dni: {
+        idProducto: {
             type: dataTypes.INTEGER
         },
+        idUsuario: {
+            type: dataTypes.INTEGER
+        },
+        commentario: {
+            type: dataTypes.STRING(1000)
+        },
+       
         createdAt: {
             type: dataTypes.DATE
         },
@@ -33,10 +28,10 @@ module.exports = function (sequelize, dataTypes) {
 
     }
     let config = {
-        tableName: "usuarios",
+        tableName: "comentarios",
         timestamps: false,
         underscored: true
     }
-    let Usuario = sequelize.define (alias, cols, config);
-    return Usuario;
+    let Comentario = sequelize.define (alias, cols, config);
+    return Comentario;
 }
