@@ -1,5 +1,5 @@
 const data= require('../data/data');
-
+const db = require ("../database/models");
 const productsController = {
     product: function (req, res){
         let id = req.params.id;

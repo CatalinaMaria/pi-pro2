@@ -1,5 +1,5 @@
 const data= require('../data/data');
-
+const db = require ("../database/models");
 const indexController = {
     index: function(req, res) {
         res.render('index', {products: data.productos, comentarios: data.comentarios});
@@ -10,5 +10,3 @@ const indexController = {
 };
 
 module.exports = indexController;
-
-// cambios
