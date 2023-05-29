@@ -77,7 +77,7 @@ const data = {
         {
             imagen: '/images/products/houseofearthandblood.webp',
             nombre: 'House of Earth and blood',
-            descripcion: 'The first Crescent City novel. Meet Bryce Quinland and Hunt Atalar. Bryce Quinlan had the perfect life-working hard all day and partying all night-until a demon murdered her closest friends, leaving her bereft, wounded, and alone. When the accused is behind bars but the crimes start up again, Bryce finds herself at the heart of the investigation.',
+            descripcion: '',
             fecha: '12 / 01 / 2023',
         },
     ],
