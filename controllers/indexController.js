@@ -11,7 +11,8 @@ db.Usuario.findAll({
 db.Product.findAll({
   incude: [
     {associate: "usuarioProducto"},
-    {associate: "productoComentarios"}
+    {associate: "productoComentarios",
+      include: ["usuarioComentario"]}
   ]
 }).then(resultados=>{
 
