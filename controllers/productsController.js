@@ -1,5 +1,29 @@
 const data= require('../data/data');
 const db = require ("../database/models");
+db.Usuario.findAll({
+    incude: [
+      {associate: "productoUsuario"},
+      {associate: "comentarioUsuario"}
+    ]
+  }).then(resultados=>{
+    
+  })
+  db.Comentario.findAll({
+    incude: [
+      {associate: "comentarioDeProducto"},
+      {associate: "usuarioComentario"}
+    ]
+  }).then(resultados=>{
+    
+  })
+  db.Product.findAll({
+    incude: [
+      {associate: "usuarioProducto"},
+      {associate: "productoComentarios"}
+    ]
+  }).then(resultados=>{
+  
+  })
 const productsController = {
     product: function (req, res){
         let id = req.params.id;

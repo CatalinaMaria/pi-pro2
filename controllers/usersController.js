@@ -1,5 +1,21 @@
 const data= require('../data/data');
 const db = require ("../database/models");
+db.Usuario.findAll({
+    incude: [
+      {associate: "productoUsuario"},
+      {associate: "comentarioUsuario"}
+    ]
+  }).then(resultados=>{
+    
+  })
+  db.Product.findAll({
+    incude: [
+      {associate: "usuarioProducto"},
+      {associate: "productoComentarios"}
+    ]
+  }).then(resultados=>{
+  
+  })
 const usersController = {
     register: function(req,res){
         res.render('register')
