@@ -1,6 +1,6 @@
 const data= require('../data/data');
 const db = require ("../database/models");
-
+const usuario = db.Usuario
 const usersController = {
   register: function(req,res){
       res.render('register')
@@ -16,14 +16,12 @@ const usersController = {
   },
 };
 
-db.Usuario.findAll({
+usuario.findAll({
     include: [
-      {model: "productoUsuario"},
-      {model: "comentarioUsuario"}
+      {association: "productoUsuario"},
+      {association: "comentarioUsuario"}
     ]
-  }).then(resultados=>{
-    let resultado = usersController
-  })
+  }).then(function(data){console.log(data);})
   
 module.exports = usersController;
 

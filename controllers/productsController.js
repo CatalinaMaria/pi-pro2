@@ -1,5 +1,6 @@
 const data= require('../data/data');
 const db = require ("../database/models");
+const producto = db.Product
 const productsController = {
   product: function (req, res){
       let id = req.params.id;
@@ -10,14 +11,10 @@ const productsController = {
   },
 };
 
-  db.Product.findAll({
-    include: [
-      {model: "usuarioProducto"},
-      {model: "productoComentarios"}
-    ]
-  }).then(resultados=>{
-    let resultado = productsController
-  })
+producto.findAll({
+  include: [{association: 'usuarioProducto'}, 
+  {association: 'productoComentarios'}]
+})
 
 
 module.exports = productsController;
