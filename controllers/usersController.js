@@ -6,29 +6,22 @@ db.Usuario.findAll({
       {associate: "comentarioUsuario"}
     ]
   }).then(resultados=>{
-    
+    const usersController = {
+      register: function(req,res){
+          res.render('register')
+      },
+      login: function (req,res) {
+          res.render('login')
+      },
+      profile: function (req, res){
+          res.render('profile' , {usuarios: data.usuarios, products: data.productos, comentarios: data.comentarios})
+      },
+      edit: function (req,res){
+          res.render('profile-edit', {usuarios: data.usuarios})
+      },
+  };
   })
-  db.Product.findAll({
-    incude: [
-      {associate: "usuarioProducto"},
-      {associate: "productoComentarios"}
-    ]
-  }).then(resultados=>{
   
-  })
-const usersController = {
-    register: function(req,res){
-        res.render('register')
-    },
-    login: function (req,res) {
-        res.render('login')
-    },
-    profile: function (req, res){
-        res.render('profile' , {usuarios: data.usuarios, products: data.productos, comentarios: data.comentarios})
-    },
-    edit: function (req,res){
-        res.render('profile-edit', {usuarios: data.usuarios})
-    },
-};
+
 
 module.exports = usersController;
