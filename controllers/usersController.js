@@ -18,8 +18,8 @@ const usersController = {
 
 db.Usuario.findAll({
     include: [
-      {associate: "productoUsuario"},
-      {associate: "comentarioUsuario"}
+      {model: "productoUsuario"},
+      {model: "comentarioUsuario"}
     ]
   }).then(resultados=>{
     let resultado = usersController

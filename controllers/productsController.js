@@ -12,8 +12,8 @@ const productsController = {
 
   db.Product.findAll({
     include: [
-      {associate: "usuarioProducto"},
-      {associate: "productoComentarios"}
+      {model: "usuarioProducto"},
+      {model: "productoComentarios"}
     ]
   }).then(resultados=>{
     let resultado = productsController
