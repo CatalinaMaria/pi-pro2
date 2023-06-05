@@ -2,7 +2,7 @@ const data= require('../data/data');
 const db = require ("../database/models");
 
   db.Product.findAll({
-    incude: [
+    include: [
       {associate: "usuarioProducto"},
       {associate: "productoComentarios"}
     ]
