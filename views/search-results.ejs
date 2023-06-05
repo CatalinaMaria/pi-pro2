@@ -2,7 +2,11 @@
 
 <body>
 	<!-- Header -->
-	<%- include('./partials/headernoLogueado.ejs') %>
+	<% if (nombreDeUsuario != null) { %>
+		<%- include('headerLogueado') 
+  <% } else { %>
+		<%- include('headernoLogueado')	
+  <% } %>  
 	<!-- /Header -->
 
 	<!-- Novedades -->
