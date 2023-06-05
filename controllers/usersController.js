@@ -20,8 +20,8 @@ db.Usuario.findAll({
           res.render('profile-edit', {usuarios: data.usuarios})
       },
   };
+  
   })
   
-
-
 module.exports = usersController;
+
