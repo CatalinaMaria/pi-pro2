@@ -28,6 +28,18 @@ usuario.findAll({
       {association: "comentarioUsuario"}
     ]
   }).then(function(data){console.log(data);})
+
+  usuario.create({
+    id:,
+    email:,
+    contraseña: contraEncriptada,
+    fotoPerfil:,
+    fecha:,
+    dni: ,
+    createdAt:,
+    updatedAt: ,
+    deletedAt:,
+  });
   
 module.exports = usersController;
 

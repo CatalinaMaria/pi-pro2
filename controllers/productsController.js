@@ -18,7 +18,18 @@ const productsController = {
 producto.findAll({
   include: [{association: 'usuarioProducto'}, 
   {association: 'productoComentarios'}]
-})
+}).then(function(data){console.log(data);})
 
+
+producto.create({
+  idProducto: ,
+  nombreProducto:,
+  descripcion:,
+  clienteId: ,
+  createdAt: ,
+  updatedAt:  ,
+  deletedAt: ,
+
+});
 
 module.exports = productsController;
