@@ -14,6 +14,9 @@ const usersController = {
   edit: function (req,res){
       res.render('profile-edit', {usuarios: data.usuarios})
   },
+  store: function (req,res){
+    console.log(req.body);
+},
 };
 
 usuario.findAll({

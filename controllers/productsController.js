@@ -9,6 +9,9 @@ const productsController = {
   productadd: function(req,res){
       res.render('product-add', {usuarios: data.usuarios});
   },
+  store: function (req,res){
+    console.log(req.body);
+},
 };
 
 producto.findAll({

@@ -10,6 +10,9 @@ const indexController = {
     searchresults: function (req, res){
       res.render('search-results', {products: data.productos, comentarios: data.comentarios});
     },
+    store: function (req,res){
+      console.log(req.body);
+  },
 };
 
 usuario.findAll({
