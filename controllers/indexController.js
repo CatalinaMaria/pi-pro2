@@ -12,6 +12,7 @@ const indexController = {
     },
     store: function (req,res){
       console.log(req.body);
+      res.redirect("/search-results")
   },
 };
 
