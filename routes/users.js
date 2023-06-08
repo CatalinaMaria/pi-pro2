@@ -12,5 +12,6 @@ router.get('/login/create', usersController.create);
 router.post('/login/store', usersController.store);
 router.get('/edit/create', usersController.create);
 router.post('/edit/store', usersController.store);
-
+router.get('/myprofile/create', usersController.create);
+router.post('/myprofile/store', usersController.store);
 module.exports = router;
