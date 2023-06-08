@@ -1,6 +1,8 @@
 const data= require('../data/data');
 const db = require ("../database/models");
-const usuario = db.Usuario
+const usuario = db.Usuario;
+const bcrypt= require("bcrypctjs");
+let contraEncriptada= bcrypt.hashSync(// acá iría lo que viene del formulario);
 const usersController = {
   register: function(req,res){
       res.render('register')
