@@ -2,10 +2,10 @@
 
 <body>
 	<!-- Header -->
-	<% if (nombreDeUsuario != null) { %>
-		<%- include('headerLogueado') %>
+	<% if (locals.nombreDeUsuario != null) { %>
+		<%- include('./partials/headerLogueado.ejs') %>
   <% } else { %>
-		<%- include('headernoLogueado')	%>
+		<%- include('./partials/headernoLogueado.ejs')	%>
   <% } %>  
 	<!-- /Header -->
 

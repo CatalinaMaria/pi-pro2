@@ -4,9 +4,9 @@ const productsController = require('../controllers/productsController');
 
 router.get('/detalle/:id', productsController.product);
 router.get('/add', productsController.productadd);
-router.get('/add/create', productsController.create);
-router.post('/add/store', productsController.store);
-router.get('/detalle/:id/create', productsController.create);
-router.post('/detalle/:id/store', productsController.store);
+// router.get('/add/create', productsController.create);
+// router.post('/add/store', productsController.store);
+// router.get('/detalle/:id/create', productsController.create);
+// router.post('/detalle/:id/store', productsController.store);
 
 module.exports = router;

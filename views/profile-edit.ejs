@@ -3,9 +3,9 @@
 <body>
 	<!-- Header -->
 	<% if (nombreDeUsuario != null) { %>
-		<%- include('headerLogueado') %>
+		<%- include('./partials/headerLogueado.ejs') %>
   <% } else { %>
-		<%- include('headernoLogueado')	%>
+		<%- include('./partials/headernoLogueado.ejs')	%>
   <% } %>  
 	<!-- /Header -->
 

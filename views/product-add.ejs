@@ -2,10 +2,10 @@
 
 <body>
 	<!-- Header -->
-	<% if (nombreDeUsuario != null) { %>
-		<%- include('headerLogueado') %>
+	<% if (locals.nombreDeUsuario != null) { %>
+		<%- include('./partials/headerLogueado.ejs') %>
   <% } else { %>
-		<%- include('headernoLogueado')	%>
+		<%- include('./partials/headernoLogueado.ejs')	%>
   <% } %>  
 	<!-- /Header -->
 
@@ -17,7 +17,7 @@
 			<h2 class="col-12"> 
 
 				<div class="form-registro">
-					<form action="/users/myprofile/store" method="POST" class="formulario">
+					<form action="/users/myprofile" method="get" class="formulario">
 						<h4 class="products-title">Agregar productos</h4>
 						<div class="campos">
 						<label for="" name="correo" >Imagen</label>

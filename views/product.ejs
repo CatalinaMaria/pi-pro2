@@ -2,17 +2,17 @@
 
 <body>
 	<!-- Header -->
-	<% if (nombreDeUsuario != null) { %>
-		<%- include('headerLogueado') %>
+	<% if (locals.nombreDeUsuario != null) { %>
+		<%- include('./partials/headerLogueado.ejs') %>
   <% } else { %>
-		<%- include('headernoLogueado')	%>
+		<%- include('./partials/headernoLogueado.ejs')	%>
   <% } %>  
 	<!-- /Header -->
 	
 	<!-- product detail -->
 	<div class="container products-wrapper">
 		<div class="d-flex align-items-center">
-			<h2 class="products-title"><%- products.nombre %></h2> 
+			<h2 class="products-title"><%- products.nombreProducto %></h2> 
 			<p class="product-detail-description">
 				<a href="/products/add">Editar</a>
 			</p>
@@ -27,19 +27,19 @@
 
 				<div class="col-12 col-lg-4">
 					<section class="comments">
-						<% for( let i = 0; i < comentarios.length; i++ )  { %>
+						<% for( let i = 0; i < products.productoComentarios.length; i++ )  { %>
 							<article>
 								<img src="/images/users/fotoperfil1.jpg" alt="">
 								<div class="data">
 									<p class="user">
-										<strong> <a href="/users/myprofile"><%- comentarios[i].nombreusuario %> </a>
-										</strong> <%- comentarios[i].textocom %></p>
+										<strong> <a href="/users/myprofile"><%= products.productoComentarios[i].idUsuario %> </a>
+										</strong> <%= products.productoComentarios[i].commentario %></p>
 
 								</div>
 							</article> <% } %>
 				
 					</section>
-					<form class="form" action="" method="POST">
+					<form class="form" action="" method="get">
 						<input class="form-input" type="text" value="" placeholder="Agregar comentario">
 						<button type="submit" class="buy-now-button">Agregar Comentario</button>
 					</form>

@@ -1,10 +1,24 @@
 const data= require('../data/data');
 const db = require ("../database/models");
-const producto = db.Product
+const producto = db.Product;
+//mostrar los datos del usuario que comenta. Si se puede.
+let criterio ={
+  include: [
+        {association: "usuarioProducto"},
+        {association: "productoComentarios",
+           // inlcude: [ {association: "usuarioComentario"} ]  
+        }
+      ]
+}
 const productsController = {
   product: function (req, res){
       let id = req.params.id;
-      res.render('product', {products: data.productos[id], comentarios: data.comentarios});
+      producto.findByPk(id, criterio)
+        .then(data=>{
+          // return res.send(data)
+          res.render('product', {products: data});
+        })
+      
   },
   productadd: function(req,res){
       res.render('product-add', {usuarios: data.usuarios});

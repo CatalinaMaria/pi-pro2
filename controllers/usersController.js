@@ -1,8 +1,8 @@
 const data= require('../data/data');
 const db = require ("../database/models");
 const usuario = db.Usuario;
-const bcrypt= require("bcrypctjs");
-let contraEncriptada= bcrypt.hashSync(// acá iría lo que viene del formulario);
+// const bcrypt= require("bcrypctjs");
+
 const usersController = {
   register: function(req,res){
       res.render('register')
@@ -29,17 +29,7 @@ usuario.findAll({
     ]
   }).then(function(data){console.log(data);})
 
-  usuario.create({
-    id:,
-    email:,
-    contraseña: contraEncriptada,
-    fotoPerfil:,
-    fecha:,
-    dni: ,
-    createdAt:,
-    updatedAt: ,
-    deletedAt:,
-  });
+
   
 module.exports = usersController;
 

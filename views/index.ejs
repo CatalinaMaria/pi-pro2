@@ -3,10 +3,10 @@
 <body>
 	<!-- Header -->
 
-	<% if (nombreDeUsuario != null) { %>
-		  <%- include('headerLogueado') %>
+	<% if (locals.nombreDeUsuario != null) { %>
+		  <%- include('./partials/headerLogueado.ejs') %>
 	<% } else { %>
-		  <%- include('headernoLogueado')%>	
+		  <%- include('./partials/headernoLogueado.ejs')%>	
 	<% } %>  
 
 	<!-- /Header -->
@@ -26,14 +26,14 @@
 			<% for( let i = 0; i < products.length; i++ ) { %>
 				<div class="col-12 col-sm-6 col-lg-3">
 					<section class="product-box">
-						<a href="/products/detalle/<%= i %>">
+						<a href="/products/detalle/<%= products[i].idProducto %>">
 							<figure class="product-box_image">
 								<img class="imgproducto" src= <%- products[i].imagen %> alt="imagen de la tapa de <%- products[i].nombre %>">
 							</figure>
 							<article class="product-box_data">
-								<h2><%- products[i].nombre %></h2>
+								<h2><%- products[i].nombreProducto %></h2>
 								<p><%- products[i].descripcion %></p>
-								<p>Comentarios: <%- comentarios.length %></p>
+								
 							</article>
 						</a>
 					</section>
@@ -56,9 +56,9 @@
 								<img class="imgproducto" src= <%- products[i].imagen %> alt="imagen de la tapa de <%- products[i].nombre %>">
 							</figure>
 							<article class="product-box_data">
-								<h2><%- products[i].nombre %></h2>
+								<h2><%- products[i].nombreProducto %></h2>
 								<p><%- products[i].descripcion %></p>
-								<p>Comentarios: <%- comentarios.length %></p>
+								
 							</article>
 						</a>
 					</section>

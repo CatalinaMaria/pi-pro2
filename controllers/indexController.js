@@ -1,18 +1,19 @@
-const data= require('../data/data');
 const db = require ("../database/models");
-const usuario = db.Usuario
-const producto =db.Product
+const usuario = db.Usuario;
+const producto =db.Product;
 
 
 const indexController = {
     index: function(req, res) {
-    usuario.findAll({
-      include: [
-    {association: "productoUsuario"},
-    {association: "comentarioUsuario"}
-  ]
-    }).then(function(data){console.log(data),
-  res.render('index', {products: data.productos, comentarios: data.comentarios});;})
+      let criterio ={
+        include: [
+      {association: "productoUsuario"},
+      {association: "comentarioUsuario"}
+    ]
+      }
+    producto.findAll().then(function(data){
+      
+  res.render('index', {products: data})})
         
       },
     searchresults: function (req, res){
