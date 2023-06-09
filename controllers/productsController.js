@@ -10,26 +10,36 @@ const productsController = {
       res.render('product-add', {usuarios: data.usuarios});
   },
   store: function (req,res){
+    let errors = {};
     console.log(req.body);
-    res.redirect("/users/myprofile");
+    if (req.body.product == "") {
+      errors.message = "El producto debe tener un nombre";
+      res.locals.errors = errors;
+      res.render('product-add');
+    } else if (req.body.description == "") {
+      errors.message = "Debes agregarle una descripción al producto";
+      res.locals.errors = errors;
+      res.render('product-add');
+    }
+      else {
+        let criterio = {
+          where: [{ product: req.body.product }]
+        }; producto.findAll(criterio)
+        .then(data => {
+          errors.message = "Este producto ya existe";
+          res.locals.errors = errors;
+          res.render('product-add');
+        }).catch(error => console.log(error))
+
+        let productonuevo = {
+          nombreProducto: req.body.product,
+          descripcion: req.body.description,
+          
+        }
+        producto.create(productonuevo);
+        res.redirect('/users/myprofile');
+      }
 },
 };
-
-producto.findAll({
-  include: [{association: 'usuarioProducto'}, 
-  {association: 'productoComentarios'}]
-}).then(function(data){console.log(data);})
-
-
-producto.create({
-  idProducto: ,
-  nombreProducto:,
-  descripcion:,
-  clienteId: ,
-  createdAt: ,
-  updatedAt:  ,
-  deletedAt: ,
-
-});
 
 module.exports = productsController;
