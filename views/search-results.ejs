@@ -2,31 +2,28 @@
 
 <body>
 	<!-- Header -->
-	<% if (nombreDeUsuario != null) { %>
-		<%- include('./partials/headerLogueado.ejs') 
+	<% if (locals.nombreDeUsuario != null) { %>
+		<%- include('./partials/headerLogueado.ejs') %>
   <% } else { %>
-		<%- include('./partials/headernoLogueado.ejs')	
+		<%- include('./partials/headernoLogueado.ejs')%>	
   <% } %>  
-	<!-- /Header -->
-
 	<!-- Novedades -->
 	<div class="container products-wrapper">
 		<div class="row">
 			<div class="col-12">
 				<h2 class="products-title">Resultados de búsqueda</h2>
 			</div>
-			<!-- Show the "ultimos" products -->
-			<% for( let i = 0; i < products.lenght; i++ ) { %>
+			<% for( let i = 0; i < products.length; i++ ) { %>
 				<div class="col-12 col-sm-6 col-lg-3">
 					<section class="product-box">
 						<a href="/products/detalle/<%= products[i].idProducto %>">
 							<figure class="product-box_image">
-								<img class="imgproducto" src= <%- products[i].imagen %> alt="imagen de la tapa de <%- products[i].nombreProducto %>">
+								<img class="imgproducto" src= <%= products[i].imagen %> alt="imagen de la tapa de <%= products[i].nombreProducto %>">
 							</figure>
 							<article class="product-box_data">
-								<h2><%- products[i].nombreProducto %></h2>
-								<p><%- products[i].descripcion %></p>
-								<p>Comentarios: <%- comentarios.length %></p>
+								<h2><%= products[i].nombreProducto %></h2>
+								<p><%= products[i].descripcion %></p>
+								<p>Subido por: <%= //products[i].usuarioProducto.email %></p>
 							</article>
 						</a>
 					</section>

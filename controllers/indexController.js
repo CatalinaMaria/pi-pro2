@@ -1,44 +1,39 @@
 const db = require ("../database/models");
 const usuario = db.Usuario;
 const producto =db.Product;
-const op = db.Sequelize.op;
+const op = db.Sequelize.Op;
 
 
 const indexController = {
     index: function(req, res) {
       let criterio ={
         include: [
-      {association: "productoUsuario"},
-      {association: "comentarioUsuario"}
+      {association: "usuarioProducto"},
+      {association: "productoComentarios"}
     ]
       }
-    producto.findAll({
-      order: [['idProducto', 'ASC']],
+    producto.findAll(criterio,{
+      order: [['idProducto', 'DESC']],
       limit: 12,
     }).then(function(data){
+      // res.send(data)
       
   res.render('index', {products: data})})
         
       },
     searchresults: function (req, res){
       let search = req.query.search;
-      console.log(search)
+     
+      let relaciones = {include: [{association: "usuarioProducto"},] }
       producto.findAll({
-        where: {
-          [op.or] : [
-            {producto: {[op.like]: `%${search}%`}},
-            {desripcionProducto: {[op.like]: `%${search}%`}},
-          ]
-        },
-        order: ['createdAt', 'DESC'],
-        include: [
-          {association: "productoUsuario"},],
-      })
+        where: [{nombreProducto: {[op.like]:"%"+search+"%"}}],
+      }, relaciones)
       .then(products=> {
+        // return res.send(products)
         if (products){
-          res.render ('search-results', (products, search))
+          res.render ('search-results', {products: products})
         }
-      } )
+      } ).catch(function(err){console.log(err)});
           
     },
     store: function (req,res){
