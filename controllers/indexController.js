@@ -4,6 +4,7 @@ const producto =db.Product;
 const op = db.Sequelize.Op;
 
 
+
 const indexController = {
     index: function(req, res) {
       let criterio ={
@@ -33,14 +34,8 @@ const indexController = {
         if (products){
           res.render ('search-results', {products: products})
         }
-      } ).catch(function(err){console.log(err)});
-          
-    },
-    store: function (req,res){
-      console.log(req.body);
-      res.redirect("/search-results")
-  },
-};
+      } ).catch(function(err){console.log(err)})
+}}
 
 
 module.exports = indexController;
