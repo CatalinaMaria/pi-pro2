@@ -1,4 +1,3 @@
-const data= require('../data/data');
 const db = require ("../database/models");
 const producto = db.Product;
 //mostrar los datos del usuario que comenta. Si se puede.
@@ -6,6 +5,7 @@ let criterio ={
   include: [
         {association: "usuarioProducto"},
         {association: "productoComentarios",
+            include: [{association: "usuarioComentario"}]
            // inlcude: [ {association: "usuarioComentario"} ]  
         }
       ]

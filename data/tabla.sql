@@ -37,11 +37,11 @@ deletedAt timestamp null
 );
 
 insert into usuarios (id,email,contraseña,fotoPerfil,fecha,dni)
-values(default,"m@gmail.com","m","/images/users/default-image.png","03-04-23",45014441), 
-(default,"email2@gmail.com","marich","/images/users/default-image.png","03-04-23",45014442), 
-(default,"email3@gmail.com","ma","/images/users/default-image.png","03-04-23",45014443), 
-(default,"email4@gmail.com","mar","/images/users/default-image.png","03-04-23",45014444),
-(default,"email5@gmail.com","mare","/images/users/default-image.png","03-04-23",45014445);
+values(default,"cata@gmail.com","m","/images/users/default-image.png","03-04-23",45014441), 
+(default,"maria@gmail.com","marich","/images/users/default-image.png","03-04-23",45014442), 
+(default,"suki@gmail.com","ma","/images/users/default-image.png","03-04-23",45014443), 
+(default,"stuart@gmail.com","mar","/images/users/default-image.png","03-04-23",45014444),
+(default,"juanca@gmail.com","mare","/images/users/default-image.png","03-04-23",45014445);
 
 insert into productos (idProducto,nombreProducto,descripcion,imagen,clienteId)
 values(default,"Pride and Prejudice","'A classic Jane Austen novel. Pride and Prejudice follows the turbulent relationship between Elizabeth Bennet, the daughter of a country gentleman, and Fitzwilliam Darcy, a rich aristocratic landowner. They must overcome the titular sins of pride and prejudice in order to fall in love and marry.","/images/products/prideandprejudice.png",1),

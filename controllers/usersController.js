@@ -1,6 +1,7 @@
 const data= require('../data/data');
 const db = require ("../database/models");
 const usuario = db.Usuario;
+const producto = db.Product;
 // const bcrypt= require("bcrypctjs");
 
 const usersController = {
@@ -11,7 +12,14 @@ const usersController = {
       res.render('login')
   },
   profile: function (req, res){
-      res.render('profile' , {usuarios: data.usuarios, products: data.productos, comentarios: data.comentarios})
+    producto.findAll({
+      where: [{}],      
+      order: [['idProducto', 'ASC']],
+      limit: 4,
+    }).then(function(data){
+      
+  res.render('index', {products: data})})  
+    res.render('profile' , {usuarios: data.usuarios, products: data.productos, comentarios: data.comentarios})
   },
   edit: function (req,res){
       res.render('profile-edit', {usuarios: data.usuarios})

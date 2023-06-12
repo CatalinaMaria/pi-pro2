@@ -11,7 +11,10 @@ const indexController = {
       {association: "comentarioUsuario"}
     ]
       }
-    producto.findAll().then(function(data){
+    producto.findAll({
+      order: [['idProducto', 'ASC']],
+      limit: 12,
+    }).then(function(data){
       
   res.render('index', {products: data})})
         
