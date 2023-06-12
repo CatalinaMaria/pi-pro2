@@ -23,7 +23,7 @@ const indexController = {
       let resultado=req.params.id;
       let criterio = {where:[{nombreProducto:resultado}]};
       producto.findAll(criterio).then(function(data){
-        es.render('search-results', {products: data.productos, comentarios: data.comentarios});
+        return res.render('search-results', {products: data});
      } ).catch(function(err){console.log(err)})
       
     },
