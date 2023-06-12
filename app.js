@@ -23,6 +23,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
+//express-session
+app.use(session({ secret: "Mensaje secreto",
+                  resave: false,
+                  saveUninitialized: true,}));
+
 //Info para todas las vistas
 app.use(function(req, res, next){
   res.locals.usuarioLogueado = {
@@ -37,10 +42,6 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/products', productsRouter);
 
-//express-session
-app.use(session({ secret: "Mensaje secreto",
-                  resave: false,
-                  saveUninitialized: true,}));
 
 
 // catch 404 and forward to error handler
