@@ -29,7 +29,15 @@ const usersController = {
           }).catch(error => console.log(error))
       }
 
-      let passwordEncriptada = 
+      let passwordEncriptada = bcryptjs.hashSync(req.body.password, 12);
+      let user = {
+        name: req.body.name,
+        email: req.body.email,
+        password: passEncriptada
+      }
+      User.create(user);
+      res.redirect('/users');
+
           res.redirect("/users/myprofile");
 },
   login: function (req,res) {
