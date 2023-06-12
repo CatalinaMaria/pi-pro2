@@ -2,47 +2,117 @@ const data= require('../data/data');
 const db = require ("../database/models");
 const usuario = db.Usuario;
 const producto = db.Product;
-// const bcrypt= require("bcrypctjs");
+//const bcryptjs= require('bcrypctjs');
 
 const usersController = {
-  register: function(req,res){
+  profile: function (req, res){ //relacion con perfiles y comentarios
+    let id= req.params.id
+    let relaciones = {
+      include: [
+        {association: "productoUsuario", include: [{association: 'comentarios'}]},
+        {association: "comentarioUsuario" }
+      ]
+    }
+    usuario.findByPk(id, relaciones)
+    .then(function(data){
+      return res.render('profile', {data:data})
+    }) .catch (function(error){
+      console.log(error)
+    })
+  },
+  editar:function(req, res){ //editar el usuario
+    let id = req.params.id
+    usuario.findByPk(id)
+    .then(function(data){
+      return res.render('profile-edit', {data:data})
+    })
+  } ,
+  editarPost: function(req, res){ //editar el post
+    let id = req.body.id
+
+    usuario.findByPk (id) 
+    .then(function (data) {
+        if (req.session.idUser == data.id) {
+            usuario.update({
+                email: req.body.mail,
+                usuario: req.body.nombre,
+                password:req.body.contrasenia,
+                fecha: req.body.fechanacimiento,
+                foto: req.body.fotoperfil,
+                
+            },{where: [{id: id}]})
+            res.redirect('/')
+        }
+        else {
+            let errors = {}
+            errors.message = "No se puede editar este perfil"
+            res.locals.errors = errors; 
+            return res.render('profile-edit', {data:data})
+        }
+ 
+    })
+    .catch (function (error) {
+        res.send({error})
+        console.log(error);
+    })
+},
+index: function (req,res){  
+    res.render("register")
+},
+
+  register: function(req,res){ //registro
       res.render('register')
   },
   store: function (req,res){
-    let errors = {};
-    if (req.body.name == "") {
-      errors.message = "El campo nombre está vacío";
+    let errors = {}; //para almacenar el error
+    if (req.body.name == " ") {
+      errors.message = "El campo email está vacío";
       res.locals.errors = errors;
-      res.render("register");} else if (req.body.password){
+      res.render("register");} 
+      
+      else if (req.body.password){
         errors.message = "El campo password está vacío";
         res.locals.errors = errors;
-        res.render("register"); //chequear que funcione bien con la ruta /register
-      } else {
+        res.render("register"); 
+      } 
+      
+      else {
         let criterio = {
-          where: [{ email: req.body.email }]
+          email: req.body.email
         }
-        User.findAll(criterio)
+        usuario.findOne({where: [criterio]})
           .then(data => {
-            errors.message = "El email ya existe!";
-            res.locals.errors = errors;
-            res.render("addUser");
+            if(data != null){
+              errors.message = "El email ya existe!";
+              res.locals.errors = errors;
+              res.render("register");
+            }
+            else {
+              let passEncriptada = bcryptjs.hashSync(req.body.pass,12);
+              let user= {
+                name: req.body.nombre,
+                email: req.body.mail,
+                contraseña: passEncriptada,
+                fecha: req.body.fechanacimiento,
+                fotoPerfil: req.body.fotoperfil
+              }
+              console.log(user);
+              usuario.create(user);
+              res.redirect('/users/login')
+            }
+            
           }).catch(error => console.log(error))
       }
-
-      let passwordEncriptada = bcryptjs.hashSync(req.body.password, 12);
-      let user = {
-        name: req.body.name,
-        email: req.body.email,
-        password: passEncriptada
-      }
-      User.create(user);
-      res.redirect('/users');
-
-          res.redirect("/users/myprofile");
 },
-  login: function (req,res) {
-      res.render('login')
+
+login: function (req,res) { //login
+if(req.session.user != undefined){
+  return res.redirect('/')
+} else {
+  return res.render("login")
+}
   },
+
   ingresar: (req, res) => {
     let errors = {};
     let info = req.body;
@@ -51,12 +121,16 @@ const usersController = {
     };
     User.findOne(filtro)
     .then(result=>{
-      if(result  !=null){
-        let check = bcryptjs.compareSync(info.password, result.password);
+      if(result  == null){
+        errors.message = 'El usuario no existe';
+        res.locals.errors = errors;
+        return res.render('login') }
+      else {
+        let check = bcryptjs.compareSync(password, result.password);
         if(check){
-          req.session.user = result.dataValues;
-          req.locals.user = result.dataValues;
-          if(info.rememberme){
+          req.session.user = result.usuario;
+          req.locals.id = result.id;
+          if(rememberMe){
             res.cookie("userId",result.dataValues.id,{maxAge:1000 *60 *10})
           }
           return res.redirect('/')
@@ -65,26 +139,18 @@ const usersController = {
           
           errors.message = "Contraseña no coincide";
           res.locals.errors = errors;
-          res.render("addUser");
+          res.render("register");
         }
       }
     })
    
   },
-  profile: function (req, res){
-    producto.findAll({
-      where: [{}],      
-      order: [['idProducto', 'ASC']],
-      limit: 4,
-    }).then(function(data){
-      
-  res.render('index', {products: data})})  
-    res.render('profile' , {usuarios: data.usuarios, products: data.productos, comentarios: data.comentarios})
+  logout: function (req, res) { //logout
+    req.session.destroy() ,
+    res.clearCookie("userId", result.dataValues, id,{maxAge:1000 *60 *10} )
+    res.redirect('register')
   },
-  edit: function (req,res){
-      res.render('profile-edit', {usuarios: data.usuarios})
-  },
- 
+  
 };
 
 usuario.findAll({
@@ -97,4 +163,3 @@ usuario.findAll({
 
   
 module.exports = usersController;
-
