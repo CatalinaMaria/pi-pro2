@@ -147,13 +147,12 @@ if(req.session.user != undefined){
     })
    
   },
-  logout: function (req, res) { //logout
-    req.session.destroy() ,
-    res.clearCookie("userId", result.dataValues, id,{maxAge:1000 *60 *10} )
-    res.redirect('register')
-  },
-  
-};
+  logout: function(req,res) {
+    req.session.destroy()
+    res.clearCookie('usuario') 
+    return res.redirect('/')
+}
+}
 
 usuario.findAll({
     include: [
