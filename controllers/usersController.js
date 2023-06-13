@@ -72,8 +72,8 @@ index: function (req,res){
       res.locals.errors = errors;
       res.render("register");} 
       
-      else if (req.body.password){
-        errors.message = "El campo password está vacío";
+      else if (req.body.password < 3){
+        errors.message = "Hay un error, el campo password debe tener 3 o mas caracteres";
         res.locals.errors = errors;
         res.render("register"); 
       } 
@@ -118,33 +118,41 @@ if(req.session.user != undefined){
   ingresar: (req, res) => {
     let errors = {};
     let info = req.body;
-    let filtro={
-      where:[{email:info.mail}]
-    };
-    usuario.findOne(filtro)
-    .then(result=>{
-      if(result  == null){
-        errors.message = 'El usuario no existe';
+
+  if(info.mail == ""){
+    errors.message = "El campo email esta vacio";
         res.locals.errors = errors;
-        return res.render('login') }
-      else {
-        let check = bcryptjs.compareSync(password, result.password);
-        if(check){
-          req.session.user = result.usuario;
-          req.locals.id = result.id;
-          if(rememberMe){
-            res.cookie("userId",result.dataValues.id,{maxAge:1000 *60 *10})
-          }
-          return res.redirect('/')
-        }
-        else{
-          
-          errors.message = "Contraseña no coincide";
-          res.locals.errors = errors;
-          res.render("register");
-        }
+        return res.render("login")
+  } else if (info.password == ""){
+    errors.message = "El campo contraseña esta vacio";
+        res.locals.errors = errors;
+        return res.render("login")
+  } else{
+    let criterio = {where: [{ email: info.mail }]}
+  }
+
+  usuario.findOne(criterio)
+   .then(result=> {
+    if(result != null){ //si el usuario existe
+      let check = bcryptjs.compareSync(password, result.contraseña);
+      if(check == true){
+        req.session.usuario = {
+          email: result.dataValues.mail,
+          id: result.dataValues.id,
+        };
+        res.locals.usuario = result.dataValues
       }
-    })
+      if (info.rememberMe){
+        res.cookie("userId",{email: result.dataValues.mail, id: result.dataValues.id},{maxAge:1000 *60 *10})
+      } return res.redirect('/')
+    } else {
+      errors.message = "El email no existe";
+      res.locals.errors = errors;
+      return res.render('login')
+    }  
+   }) .catch(errors => {
+    res.send(errors)
+  })    
    
   },
   logout: function (req, res) { //logout
