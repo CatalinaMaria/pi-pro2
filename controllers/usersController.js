@@ -6,7 +6,7 @@ const bcryptjs= require('bcryptjs');
 
 const usersController = {
   profile: function (req, res){ //relacion con perfiles y comentarios
-    let user= req.params.user
+    let user= req.params.usuario
     let relaciones = {
       include: [
         {association: "productoUsuario", include: [{association: 'productoComentarios'}]},
@@ -138,12 +138,11 @@ if(req.session.user != undefined){
       if(check == true){
         req.session.usuario = {
           email: result.dataValues.mail,
-          id: result.dataValues.id,
         };
         res.locals.usuario = result.dataValues
       }
       if (info.rememberMe){
-        res.cookie("userId",{email: result.dataValues.mail, id: result.dataValues.id},{maxAge:1000 *60 *10})
+        res.cookie("userId",{email: result.dataValues.mail},{maxAge:1000 *60 *10})
       } return res.redirect('/')
     } else {
       errors.message = "El email no existe";
