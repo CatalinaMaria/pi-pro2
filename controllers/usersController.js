@@ -2,7 +2,7 @@ const data= require('../data/data');
 const db = require ("../database/models");
 const usuario = db.Usuario;
 const producto = db.Product;
-//const bcryptjs= require('bcrypctjs');
+const bcryptjs= require('bcryptjs');
 
 const usersController = {
   profile: function (req, res){ //relacion con perfiles y comentarios
@@ -65,8 +65,9 @@ index: function (req,res){
       res.render('register')
   },
   store: function (req,res){
+    //res.send({data: req.body})
     let errors = {}; //para almacenar el error
-    if (req.body.name == " ") {
+    if (req.body.mail == " ") {
       errors.message = "El campo email está vacío";
       res.locals.errors = errors;
       res.render("register");} 
@@ -79,7 +80,7 @@ index: function (req,res){
       
       else {
         let criterio = {
-          email: req.body.email
+          email: req.body.mail
         }
         usuario.findOne({where: [criterio]})
           .then(data => {
@@ -89,15 +90,15 @@ index: function (req,res){
               res.render("register");
             }
             else {
-              let passEncriptada = bcryptjs.hashSync(req.body.pass,12);
+              let passEncriptada = bcryptjs.hashSync(req.body.password,12);
               let user= {
-                name: req.body.nombre,
+                usuario: req.body.usuario,
                 email: req.body.mail,
                 contraseña: passEncriptada,
-                fecha: req.body.fechanacimiento,
-                fotoPerfil: req.body.fotoperfil
+                fecha: req.body.fecha,
+                fotoPerfil: req.body.foto
               }
-              console.log(user);
+              res.send(user);
               usuario.create(user);
               res.redirect('/users/login')
             }
@@ -118,9 +119,9 @@ if(req.session.user != undefined){
     let errors = {};
     let info = req.body;
     let filtro={
-      where:[{email:info.email}]
+      where:[{email:info.mail}]
     };
-    User.findOne(filtro)
+    usuario.findOne(filtro)
     .then(result=>{
       if(result  == null){
         errors.message = 'El usuario no existe';

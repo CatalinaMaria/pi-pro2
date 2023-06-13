@@ -7,7 +7,6 @@ usuario varchar(200) unique not null,
 contraseña varchar(500) unique not null,
 fotoPerfil varchar(300) not null,
 fecha date not null,
-dni int unsigned not null,
 createdAt timestamp default current_timestamp,
 updatedAt timestamp default current_timestamp on update current_timestamp,
 deletedAt timestamp  null
@@ -37,12 +36,12 @@ updatedAt timestamp default current_timestamp on update current_timestamp,
 deletedAt timestamp null
 );
 
-insert into usuarios (id,email,usuario,contraseña,fotoPerfil,fecha, dni)
-values(default,"cata@gmail.com","cataosycka","m","/images/users/default-image.png","03-04-23", 555), 
-(default,"maria@gmail.com","mariariobo","marich","/images/users/default-image.png","03-04-23", 666), 
-(default,"suki@gmail.com","sukiwaterhouse","ma","/images/users/default-image.png","03-04-23",777), 
-(default,"stuart@gmail.com","stuartlittle","mar","/images/users/default-image.png","03-04-23",888),
-(default,"juanca@gmail.com","jcarlos","mare","/images/users/default-image.png","03-04-23",999);
+insert into usuarios (id,email,usuario,contraseña,fotoPerfil,fecha)
+values(default,"cata@gmail.com","cataosycka","m","/images/users/default-image.png","03-04-23"), 
+(default,"maria@gmail.com","mariariobo","marich","/images/users/default-image.png","03-04-23"), 
+(default,"suki@gmail.com","sukiwaterhouse","ma","/images/users/default-image.png","03-04-23"), 
+(default,"stuart@gmail.com","stuartlittle","mar","/images/users/default-image.png","03-04-23"),
+(default,"juanca@gmail.com","jcarlos","mare","/images/users/default-image.png","03-04-23");
 
 insert into productos (idProducto,nombreProducto,descripcion,imagen,clienteId)
 values(default,"Pride and Prejudice","'A classic Jane Austen novel. Pride and Prejudice follows the turbulent relationship between Elizabeth Bennet, the daughter of a country gentleman, and Fitzwilliam Darcy, a rich aristocratic landowner. They must overcome the titular sins of pride and prejudice in order to fall in love and marry.","/images/products/prideandprejudice.png",1),

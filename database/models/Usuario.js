@@ -9,6 +9,9 @@ module.exports = function (sequelize, dataTypes) {
         email: {
             type: dataTypes.STRING(400)
         },
+        usuario: {
+            type: dataTypes.STRING(400)
+        },
         contraseña: {
             type: dataTypes.STRING(400)
         },
@@ -17,9 +20,6 @@ module.exports = function (sequelize, dataTypes) {
         },
         fecha: {
             type: dataTypes.DATE
-        },
-        dni: {
-            type: dataTypes.INTEGER
         },
         createdAt: {
             type: dataTypes.DATE
