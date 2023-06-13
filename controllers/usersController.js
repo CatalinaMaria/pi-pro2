@@ -6,16 +6,17 @@ const producto = db.Product;
 
 const usersController = {
   profile: function (req, res){ //relacion con perfiles y comentarios
-    let id= req.params.id
+    let user= req.params.user
     let relaciones = {
       include: [
-        {association: "productoUsuario", include: [{association: 'comentarios'}]},
+        {association: "productoUsuario", include: [{association: 'productoComentarios'}]},
         {association: "comentarioUsuario" }
       ]
     }
-    usuario.findByPk(id, relaciones)
+    usuario.findByPk(user, relaciones)
     .then(function(data){
-      return res.render('profile', {data:data})
+      // res.send(data)
+      return res.render('profile', {data : data, user : user, products : data.productoUsuario});
     }) .catch (function(error){
       console.log(error)
     })
