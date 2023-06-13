@@ -5,18 +5,20 @@ const producto = db.Product;
 const bcryptjs = require('bcryptjs');
 
 const usersController = {
-  profile: function (req, res) { //relacion con perfiles y comentarios
+  profile: function (req, res, next) { //relacion con perfiles y comentarios
     let user = req.params.usuario
     let relaciones = {
       include: [
         { association: "productoUsuario", include: [{ association: 'productoComentarios' }] },
         { association: "comentarioUsuario" }
-      ]
+      ],
+      order: [[{model: producto, as : 'productoUsuario'}, 'createdAt', 'DESC']]
     }
     usuario.findByPk(user, relaciones)
       .then(function (data) {
         // res.send(data)
-        return res.render('profile', { data: data, user: user, products: data.productoUsuario });
+        console.log(data.productoUsuario);
+        return res.render('/myprofile/:user', { usuario:data});
       }).catch(function (error) {
         console.log(error)
       })
@@ -113,45 +115,77 @@ const usersController = {
     }
   },
 
-  ingresar: (req, res) => {
-    let errors = {};
-    let info = req.body;
-
-    if (info.mail == "") {
-      errors.message = "El campo email esta vacio";
-      res.locals.errors = errors;
-      return res.render("login")
-    } else if (info.password == "") {
-      errors.message = "El campo contraseña esta vacio";
-      res.locals.errors = errors;
-      return res.render("login")
-    } else {
-      let criterio = { where: [{ email: info.mail }] }
-    }
-
-    usuario.findOne(criterio)
-      .then(result => {
-        if (result != null) { //si el usuario existe
-          let check = bcryptjs.compareSync(password, result.contraseña);
-          if (check == true) {
-            req.session.usuario = {
-              email: result.dataValues.mail,
-            };
-            res.locals.usuario = result.dataValues
+  ingresar: function (req, res) {
+    usuario.findOne(
+      {where: [{email: req.body.mail}]}
+    )
+    .then(function(results){
+      if (results){
+        let check=  bcryptjs.compareSync(req.body.password, results.contraseña)
+        if(check){
+          req.session.usuario = results.dataValues;
+          if(req.body.remember){
+            res.cookie('usuario', results.dataValues.email, {maxAge: 1000 * 60 * 5})
           }
-          if (info.rememberMe) {
-            res.cookie("userId", { email: result.dataValues.mail }, { maxAge: 1000 * 60 * 10 })
-          } return res.redirect('/')
-        } else {
-          errors.message = "El email no existe";
+          return res.redirect('/users/login')
+        }
+        else{
+          res.send(results)
+          let errors = {}
+          errors.message = "La informacion ingresada es incorrecta"
           res.locals.errors = errors;
           return res.render('login')
         }
-      }).catch(errors => {
-        res.send(errors)
-      })
-
+      } else{
+        let errors = {};
+        errors.message = "Email no registrado"
+        res.locals.errors = errors;
+        return res.render("login")
+      }
+    })
   },
+  //(req, res) => {
+  //   let errors = {};
+  //   let info = req.body;
+  //   let criterio = { where: [{ email: info.mail }] }
+
+
+  //   if (info.mail == "") {
+  //     errors.message = "El campo email esta vacio";
+  //     res.locals.errors = errors;
+  //     return res.render("login")
+  //   } else if (info.password == "") {
+  //     errors.message = "El campo contraseña esta vacio";
+  //     res.locals.errors = errors;
+  //     return res.render("login")
+  //   } else {
+  //     let criterio = { where: [{ email: info.mail }] }
+  //   }
+
+  //   usuario.findOne(criterio)
+  //     .then(result => {
+  //       if (result != null) { //si el usuario existe
+  //         let check = bcryptjs.compareSync(password, result.contraseña);
+  //         if (check == true) {
+  //           req.session.usuario = {
+  //             email: result.dataValues.mail,
+  //           };
+  //           res.locals.usuario = result.dataValues
+  //         }
+  //         if (info.rememberMe) {
+  //           res.cookie("userId", { email: result.dataValues.mail }, { maxAge: 1000 * 60 * 10 })
+  //         } return res.redirect('/')
+  //       } else {
+  //         errors.message = "El email no existe";
+  //         res.locals.errors = errors;
+  //         return res.render('login')
+  //       }
+  //     }).catch(errors => {
+  //       res.send(errors)
+  //     })
+
+  // },
+  
   logout: function (req, res) {
     req.session.destroy()
     res.clearCookie('usuario')
