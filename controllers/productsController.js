@@ -42,7 +42,7 @@ const productsController = {
         console.log(error);
       })}
       else {
-        res.redirect('register')
+        res.redirect('7')
       }
 
 
