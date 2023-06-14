@@ -42,9 +42,9 @@ const productsController = {
         console.log(error);
       })}
       else {
-        res.redirect('7')
+        res.redirect('register')
       }
-
+      
 
     // let errors = {};
     // console.log(req.body);
