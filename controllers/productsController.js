@@ -24,36 +24,57 @@ const productsController = {
   productadd: function(req,res){
       res.render('product-add');
   },
-  store: function (req,res){
-    let errors = {};
-    console.log(req.body);
-    if (req.body.product == "") {
-      errors.message = "El producto debe tener un nombre";
-      res.locals.errors = errors;
-      res.render('product-add');
-    } else if (req.body.description == "") {
-      errors.message = "Debes agregarle una descripción al producto";
-      res.locals.errors = errors;
-      res.render('product-add');
-    }
-      else {
-        let criterio = {
-          where: [{ product: req.body.product }]
-        }; producto.findAll(criterio)
-        .then(data => {
-          errors.message = "Este producto ya existe";
-          res.locals.errors = errors;
-          res.render('product-add');
-        }).catch(error => console.log(error))
-
-        let productonuevo = {
-          nombreProducto: req.body.product,
-          descripcion: req.body.description,
-          
-        }
-        producto.create(productonuevo);
-        res.redirect('/users/myprofile');
+  addProduct: function (req,res, next){
+    let infoProduct = req.body
+    if (req.session.userLogueado != undefined){
+      let productoNuevo = {
+        clienteId: req.session.userLogueado.id,
+        imagen: infoProduct.picture,
+        nombreProducto: infoProduct.product,
+        descripcion: infoProduct.description,
+        createdAt:infoProduct.fechaproduct,
       }
+      producto.create(productoNuevo)
+      .then(function(product){
+        return res.redirect('/' + product.dataValues.id)
+      })
+      .catch(function(error){
+        console.log(error);
+      })}
+      else {
+        res.redirect('register')
+      }
+
+
+    // let errors = {};
+    // console.log(req.body);
+    // if (req.body.product == "") {
+    //   errors.message = "El producto debe tener un nombre";
+    //   res.locals.errors = errors;
+    //   res.render('product-add');
+    // } else if (req.body.description == "") {
+    //   errors.message = "Debes agregarle una descripción al producto";
+    //   res.locals.errors = errors;
+    //   res.render('product-add');
+    // }
+    //   else {
+    //     let criterio = {
+    //       where: [{ product: req.body.product }]
+    //     }; producto.findAll(criterio)
+    //     .then(data => {
+    //       errors.message = "Este producto ya existe";
+    //       res.locals.errors = errors;
+    //       res.render('product-add');
+    //     }).catch(error => console.log(error))
+
+    //     let productonuevo = {
+    //       nombreProducto: req.body.product,
+    //       descripcion: req.body.description,
+          
+    //     }
+    //     producto.create(productonuevo);
+    //     res.redirect('/users/myprofile');
+    //   }
 },
 };
 
