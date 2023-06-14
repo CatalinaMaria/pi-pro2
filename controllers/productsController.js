@@ -36,7 +36,7 @@ const productsController = {
       }
       producto.create(productoNuevo)
       .then(function(product){
-        return res.redirect('/products/' + product.dataValues.id)
+        return res.redirect('/')
       })
       .catch(function(error){
         console.log(error);
