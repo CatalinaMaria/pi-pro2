@@ -24,11 +24,11 @@ const indexController = {
       },
     searchresults: function (req, res){
       let search = req.query.search;
-     
-      let relaciones = {include: [{association: "usuarioProducto"},] }
+      
       producto.findAll({
         where: [{nombreProducto: {[op.like]:"%"+search+"%"}}],
-      }, relaciones)
+        include: [{association: "usuarioProducto"},] 
+      })
       .then(products=> {
         // return res.send(products)
         if (products){

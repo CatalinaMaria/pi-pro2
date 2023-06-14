@@ -11,6 +11,9 @@
 			<!-- Show the "ultimos" products -->
 			<!-- ACA EL FORMULARIO!! -->
 			
+			<% if (locals.errors) { %>
+				<p class="error"><%= errors.message %></p>
+				<%} %>
 		<form action='/users/register' method="post" class="form-registro col-12">
 			<h4 class="products-title" > Registrate </h4>
 			<input type="email" name="mail" value="" class="control" placeholder="Ingrese email">

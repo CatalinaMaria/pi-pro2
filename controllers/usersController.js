@@ -1,12 +1,11 @@
-const data = require('../data/data');
 const db = require("../database/models");
-const usuario = db.Usuario;
+const Usuario = db.Usuario;
 const producto = db.Product;
 const bcryptjs = require('bcryptjs');
 
 const usersController = {
   profile: function (req, res, next) { //relacion con perfiles y comentarios
-    let user = req.params.usuario
+    let user = req.params.user
     let relaciones = {
       include: [
         { association: "productoUsuario", include: [{ association: 'productoComentarios' }] },
@@ -14,18 +13,18 @@ const usersController = {
       ],
       order: [[{model: producto, as : 'productoUsuario'}, 'createdAt', 'DESC']]
     }
-    usuario.findByPk(user, relaciones)
-      .then(function (data) {
+    
+    Usuario.findByPk(user, relaciones)
+    .then(function (data) {
         // res.send(data)
-        console.log(data.productoUsuario);
-        return res.render('/myprofile/:user', { usuario:data});
+        return res.render('profile', {data : data, user : user, products : data.productoUsuario});
       }).catch(function (error) {
         console.log(error)
       })
   },
   editar: function (req, res) { //editar el usuario
     let id = req.params.id
-    usuario.findByPk(id)
+    Usuario.findByPk(id)
       .then(function (data) {
         return res.render('profile-edit', { data: data })
       })
@@ -33,7 +32,7 @@ const usersController = {
   editarPost: function (req, res) { //editar el post
     let id = req.body.id
 
-    usuario.findByPk(id)
+    Usuario.findByPk(id)
       .then(function (data) {
         if (req.session.idUser == data.id) {
           usuario.update({
@@ -66,8 +65,14 @@ const usersController = {
   store: function (req, res) {
     //res.send({data: req.body})
     let errors = {}; //para almacenar el error
-    if (req.body.mail == " ") {
+    if (req.body.mail == "") {  
       errors.message = "El campo email está vacío";
+      res.locals.errors = errors;
+      res.render("register");
+    }
+
+    else if (req.body.usuario == "") {  
+      errors.message = "El campo usuario está vacío";
       res.locals.errors = errors;
       res.render("register");
     }
@@ -75,14 +80,14 @@ const usersController = {
     else if (req.body.password < 3) {
       errors.message = "Hay un error, el campo password debe tener 3 o mas caracteres";
       res.locals.errors = errors;
-      res.render("register");
+      res.render("register")
     }
 
     else {
       let criterio = {
         email: req.body.mail
       }
-      usuario.findOne({ where: [criterio] })
+      Usuario.findOne({ where: [criterio] })
         .then(data => {
           if (data != null) {
             errors.message = "El email ya existe!";
@@ -99,7 +104,7 @@ const usersController = {
               fotoPerfil: req.body.foto
             }
             // res.send(user);
-            usuario.create(user);
+            Usuario.create(user);
             res.redirect('/users/login')
           }
 
@@ -112,14 +117,16 @@ const usersController = {
       return res.redirect('/')
     } else {
       return res.render("login")
-    }
+    } //tengo mis dudas sobre esto -CATAO
   },
 
   ingresar: function (req, res) {
-    usuario.findOne(
+    Usuario.findOne(
       {where: [{email: req.body.mail}]}
     )
     .then(function(results){
+      //if usuario es distinto a null compara la contraseña, 
+      
       if (results){
         let check=  bcryptjs.compareSync(req.body.password, results.contraseña)
         if(check){
@@ -144,6 +151,7 @@ const usersController = {
       }
     })
   },
+  
   //(req, res) => {
   //   let errors = {};
   //   let info = req.body;
@@ -193,7 +201,7 @@ const usersController = {
   }
 }
 
-usuario.findAll({
+Usuario.findAll({
   include: [
     { association: "productoUsuario" },
     { association: "comentarioUsuario" }
