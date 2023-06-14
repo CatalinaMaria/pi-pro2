@@ -26,7 +26,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 //express-session
 app.use(session({ secret: "Mensaje secreto",
                   resave: false,
-                  saveUninitialized: true,}));
+                  saveUninitialized: true}));
+
+//Pasar datos de session a vistas
+app.use(function(req,res,next){
+  if (req.session.user != undefined) {
+    res.locals.user = req.session.user
+  }
+  return next();
+})
 
 //Info para todas las vistas
 app.use(function(req, res, next){

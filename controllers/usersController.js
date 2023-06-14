@@ -11,13 +11,13 @@ const usersController = {
         { association: "productoUsuario", include: [{ association: 'productoComentarios' }] },
         { association: "comentarioUsuario" }
       ],
-      order: [[{model: producto, as : 'productoUsuario'}, 'createdAt', 'DESC']]
+      order: [[{ model: producto, as: 'productoUsuario' }, 'createdAt', 'DESC']]
     }
-    
+
     Usuario.findByPk(user, relaciones)
-    .then(function (data) {
+      .then(function (data) {
         // res.send(data)
-        return res.render('profile', {data : data, user : user, products : data.productoUsuario});
+        return res.render('profile', { data: data, user: user, products: data.productoUsuario });
       }).catch(function (error) {
         console.log(error)
       })
@@ -65,13 +65,13 @@ const usersController = {
   store: function (req, res) {
     //res.send({data: req.body})
     let errors = {}; //para almacenar el error
-    if (req.body.mail == "") {  
+    if (req.body.mail == "") {
       errors.message = "El campo email está vacío";
       res.locals.errors = errors;
       res.render("register");
     }
 
-    else if (req.body.usuario == "") {  
+    else if (req.body.usuario == "") {
       errors.message = "El campo usuario está vacío";
       res.locals.errors = errors;
       res.render("register");
@@ -117,41 +117,46 @@ const usersController = {
       return res.redirect('/')
     } else {
       return res.render("login")
-    } //tengo mis dudas sobre esto -CATAO
+    }
   },
 
   ingresar: function (req, res) {
-    Usuario.findOne(
-      {where: [{email: req.body.mail}]}
-    )
-    .then(function(results){
-      //if usuario es distinto a null compara la contraseña, 
-      
-      if (results){
-        let check=  bcryptjs.compareSync(req.body.password, results.contraseña)
-        if(check){
-          req.session.usuario = results.dataValues;
-          if(req.body.remember){
-            res.cookie('usuario', results.dataValues.email, {maxAge: 1000 * 60 * 5})
+    let info = req.body;
+    let criterio = { where: [{ email: info.mail }] }
+    Usuario.findOne(criterio)   //para ver si esta ese email
+      .then(result => {     //mantenemos en result info que estamos recibiendo
+        // return res.send(info)
+        if (result != null) {
+          let check = bcryptjs.compareSync('req.body.password', result.contraseña);   //valido que la password sea igual a result.contraseña
+          // return res.send(check) ACA ESTA EL ERROR
+          if (check) {            //si la clave coincide....
+            req.session.user = result.dataValues;
+            req.locals.user = result.dataValues;
+            if (info.remember) {
+              res.cookie('userId', result.dataValues.id, { maxAge: 1000 * 60 * 15 })
+            }
+            return res.redirect('/');
           }
-          return res.redirect('/users/login')
-        }
+          else {
+            let errors = {};
+            errors.message = "Contraseña incorrecta, intente de nuevo";
+            res.locals.errors = errors;
+            res.render("login")
+          }
+        } 
         else{
-          res.send(results)
-          let errors = {}
-          errors.message = "La informacion ingresada es incorrecta"
-          res.locals.errors = errors;
-          return res.render('login')
-        }
-      } else{
-        let errors = {};
-        errors.message = "Email no registrado"
+          let errors = {};
+        errors.message = "Mail no esta registrado"
         res.locals.errors = errors;
         return res.render("login")
-      }
-    })
+        }
+      })
+    // let encriptada = bcryptjs.hashSync("123", 12)
+    // let check = bcryptjs.compareSync(req.body.password, encriptada)
+    // res.send({clave:check})
+
   },
-  
+
   //(req, res) => {
   //   let errors = {};
   //   let info = req.body;
@@ -193,7 +198,7 @@ const usersController = {
   //     })
 
   // },
-  
+
   logout: function (req, res) {
     req.session.destroy()
     res.clearCookie('usuario')

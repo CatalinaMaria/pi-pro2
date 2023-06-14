@@ -12,6 +12,9 @@
 
 					<!-- Show the "ultimos" products -->
 
+					<% if (locals.errors) { %>
+						<p class="error"><%= errors.message %></p>
+						<%} %>
 					<div class="form-registro">
 						<form action="/users/login" method="post" class="formulario">
 							<h4 class="products-title"> Ingresar</h4>
