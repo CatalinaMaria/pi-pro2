@@ -136,8 +136,8 @@ const usersController = {
               req.locals.userLogueado = result.dataValues;
               console.log(locals.userLogueado, 'el locals!!!')
             }
-            if (info.remember) {
-              res.cookie('userId', result.dataValues.id, { maxAge: 1000 * 60 * 15 })
+            if (info.remember = "on") {
+              res.cookie('user', result.dataValues, { maxAge: 1000 * 60 * 15 })
             }
             return res.redirect('/');
           }
@@ -205,7 +205,7 @@ const usersController = {
 
   logout: function (req, res) {
     req.session.destroy()   // destruye la session
-    res.clearCookie('usuario')
+    res.clearCookie('user')
     return res.redirect('/')
   }
 }

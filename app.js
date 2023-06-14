@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const session = require('express-session');
+const db = require('./database/models');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -39,6 +40,23 @@ app.use(function(req,res,next){
   }
   return next();
 })
+
+app.use(function(req, res, next) {
+  if (req.cookies.user != undefined && req.session.userLogueado == undefined) {
+      let idUsuarioEnCookie = req.cookies.user.id;
+      db.Usuario.findByPk(idUsuarioEnCookie)
+      .then((user) => {
+        req.session.Usuario = user;
+        res.locals.usuario  = user.usuario;
+        return next();
+      }).catch((err) => {
+        console.log(err);
+        return next();
+      });
+  } else {
+    return next();
+  }
+});
 
 
 
