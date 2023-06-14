@@ -36,13 +36,13 @@ const productsController = {
       }
       producto.create(productoNuevo)
       .then(function(product){
-        return res.redirect('/' + product.dataValues.id)
+        return res.redirect('/products/' + product.dataValues.id)
       })
       .catch(function(error){
         console.log(error);
       })}
       else {
-        res.redirect('register')
+        res.redirect('/users/register')
       }
       
 
