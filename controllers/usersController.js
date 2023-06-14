@@ -130,11 +130,11 @@ const usersController = {
           let check = bcryptjs.compareSync(req.body.password, result.contraseña);   //valido que la password sea igual a result.contraseña
           // return res.send(check) //ACA ESTA EL ERROR
           if (check == true) {            //si la clave coincide....
-            req.session.user = result.dataValues;
-            console.log(req.session.user ,'fede')
+            req.session.userLogueado = result.dataValues;
+            console.log(req.session.userLogueado ,'fede')
             if(req.locals != undefined){
-              req.locals.user = result.dataValues;
-              console.log(locals.user, 'el locals!!!')
+              req.locals.userLogueado = result.dataValues;
+              console.log(locals.userLogueado, 'el locals!!!')
             }
             if (info.remember) {
               res.cookie('userId', result.dataValues.id, { maxAge: 1000 * 60 * 15 })

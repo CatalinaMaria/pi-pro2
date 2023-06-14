@@ -30,20 +30,12 @@ app.use(session({ secret: "Mensaje secreto",
 
 //Pasar datos de session a vistas
 app.use(function(req,res,next){
-  if (req.session.user != undefined) {
-    res.locals.user = req.session.user
+  if (req.session.userLogueado != undefined) {
+    res.locals.userLogueado = req.session.userLogueado
   }
-  else if(req.cookies.user != undefined){
-    req.session.user = req.cookies.user;
-    res.locals.user = req.sessions.user;
-  }
-  return next();
-})
-
-//Info para todas las vistas
-app.use(function(req, res, next){
-  res.locals.userLogueado = {
-                   nombreDeUsuario :'juan',
+  else if(req.cookies.userLogueado != undefined){
+    req.session.userLogueado = req.cookies.userLogueado;
+    res.locals.userLogueado = req.sessions.userLogueado;
   }
   return next();
 })
