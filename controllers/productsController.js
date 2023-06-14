@@ -1,5 +1,6 @@
 const db = require ("../database/models");
 const producto = db.Product;
+const Usuario = db.Usuario;
 //mostrar los datos del usuario que comenta. Si se puede.
 let criterio ={
   include: [
@@ -21,7 +22,7 @@ const productsController = {
       
   },
   productadd: function(req,res){
-      res.render('product-add', {usuarios: data.usuarios});
+      res.render('product-add');
   },
   store: function (req,res){
     let errors = {};

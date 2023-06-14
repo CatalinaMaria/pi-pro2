@@ -2,7 +2,7 @@
 
 <body>
 	<!-- Header -->
-	<% if (locals.nombreDeUsuario != null) { %>
+	<% if (locals.user != null) { %>
 		<%- include('./partials/headerLogueado.ejs') %>
   <% } else { %>
 		<%- include('./partials/headernoLogueado.ejs')%>	

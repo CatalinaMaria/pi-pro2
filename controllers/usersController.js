@@ -113,7 +113,7 @@ const usersController = {
   },
 
   login: function (req, res) { //login
-    if (req.session.user != undefined) {
+    if (req.session.userLogueado != undefined) {
       return res.redirect('/')
     } else {
       return res.render("login")
@@ -125,13 +125,17 @@ const usersController = {
     let criterio = { where: [{ email: info.mail }] }
     Usuario.findOne(criterio)   //para ver si esta ese email
       .then(result => {     //mantenemos en result info que estamos recibiendo
-        // return res.send(info)
+        // return res.send(result)
         if (result != null) {
-          let check = bcryptjs.compareSync('req.body.password', result.contraseña);   //valido que la password sea igual a result.contraseña
-          // return res.send(check) ACA ESTA EL ERROR
-          if (check) {            //si la clave coincide....
+          let check = bcryptjs.compareSync(req.body.password, result.contraseña);   //valido que la password sea igual a result.contraseña
+          // return res.send(check) //ACA ESTA EL ERROR
+          if (check == true) {            //si la clave coincide....
             req.session.user = result.dataValues;
-            req.locals.user = result.dataValues;
+            console.log(req.session.user ,'fede')
+            if(req.locals != undefined){
+              req.locals.user = result.dataValues;
+              console.log(locals.user, 'el locals!!!')
+            }
             if (info.remember) {
               res.cookie('userId', result.dataValues.id, { maxAge: 1000 * 60 * 15 })
             }
@@ -200,7 +204,7 @@ const usersController = {
   // },
 
   logout: function (req, res) {
-    req.session.destroy()
+    req.session.destroy()   // destruye la session
     res.clearCookie('usuario')
     return res.redirect('/')
   }

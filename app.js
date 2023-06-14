@@ -33,12 +33,16 @@ app.use(function(req,res,next){
   if (req.session.user != undefined) {
     res.locals.user = req.session.user
   }
+  else if(req.cookies.user != undefined){
+    req.session.user = req.cookies.user;
+    res.locals.user = req.sessions.user;
+  }
   return next();
 })
 
 //Info para todas las vistas
 app.use(function(req, res, next){
-  res.locals.usuarioLogueado = {
+  res.locals.userLogueado = {
                    nombreDeUsuario :'juan',
   }
   return next();
