@@ -78,19 +78,11 @@ const productsController = {
 
   borrar: function (req, res) {
     let idborrar = req.params.id; // en el formulario no se carga un id por eso pongo params y no .body
-    // let criterio = {
-    //   include: [
-    //     { association: "usuarioProducto" },
-    //     {
-    //       association: "productoComentarios",
-    //       include: [{ association: "usuarioComentario" }]
-    //     }
-    //   ],
-    // }
+    
     Producto.findByPk(idborrar)
       .then(function (data) {
         // res.send(data)
-          Producto.destroy({ where: [{ idProducto: id }] })
+          Producto.destroy({ where: [{ idProducto: idborrar }] })
           res.redirect('/')
         
       })
