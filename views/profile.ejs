@@ -59,7 +59,9 @@
 					</section>
 				</div>
 			<% } %>
-
+			<% if (products.length == 0) {%>
+				<p class="error" style="color: black;">No subio ningun producto todavía</p>
+			<%} %>
 		</div>
 	</div>
 	<!-- /Mis productos -->
