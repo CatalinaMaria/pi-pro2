@@ -18,7 +18,7 @@
 			<div class="data-container col-6">
 				<div class="d-flex align-items-center ">
 					<h1 class="main-title"><%- data.usuario %> 
-						<form action="/users/profile-edit" class="submit" method="get">
+						<form action="/users/profile-edit/<%=data.id%>" class="submit" method="get">
                          <button type="submit" class="botonEliminar">Editar</button>
 						</form>
 						<a href="/users/profile-edit">
