@@ -59,6 +59,7 @@ const productsController = {
   procesarEditar: function (req, res) {
     let ideditar = req.params.id
     let errors = {};
+
     Producto.findByPk(ideditar)
       .then(data => {
         // return res.send(data)
@@ -79,16 +80,24 @@ const productsController = {
   borrar: function (req, res) {
     let idborrar = req.params.id; // en el formulario no se carga un id por eso pongo params y no .body
     
-    Producto.findByPk(idborrar)
-      .then(function (data) {
+    Producto.destroy({ where: { idProducto: idborrar } })
+    .then(()=>{
+      res.redirect('/')
+    })
+    .catch(function(error){
+      console.log(error)
+      res.redirect('/')
+    })
+    //Producto.findByPk(idborrar)
+     // .then(function (data) {
         // res.send(data)
-          Producto.destroy({ where: [{ idProducto: idborrar }] })
-          res.redirect('/')
+       //   Producto.destroy({ where: [{ idProducto: idborrar }] })
+        //  res.redirect('/')
         
-      })
-      .catch(function (errors) {
-        console.log(errors)
-      })
+      //})
+      //.catch(function (errors) {
+       // console.log(errors)
+     // })
   },
 
   comentario: function (req,res) {
