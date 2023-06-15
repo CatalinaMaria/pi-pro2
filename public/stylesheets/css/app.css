@@ -213,7 +213,7 @@ hr {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  min-height: 87px;
+  min-height: 111px;
   background-color:#5F866F;
   color: white;
 }

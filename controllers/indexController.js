@@ -10,12 +10,11 @@ const indexController = {
       let criterio ={
         include: [
       {association: "usuarioProducto"},
-      {association: "productoComentarios"}
-    ]
+      {association: "productoComentarios"}], 
+      order: [['idProducto', 'DESC']],
+      limit: 12 
       }
     producto.findAll(criterio,{
-      order: [['idProducto', 'DESC']],
-      limit: 12,
     }).then(function(data){
       // res.send(data)
       
@@ -27,7 +26,8 @@ const indexController = {
       
       producto.findAll({
         where: [{nombreProducto: {[op.like]:"%"+search+"%"}}],
-        include: [{association: "usuarioProducto"},] 
+        include: [{association: "usuarioProducto"},], 
+        order: [['createdAt', 'DESC']] 
       })
       .then(products=> {
         // return res.send(products)

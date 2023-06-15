@@ -33,7 +33,7 @@
 							<article class="product-box_data">
 								<h2><%- products[i].nombreProducto %></h2>
 								<p><%- products[i].descripcion %></p>
-								<p>Subido por: <%= products[i].usuarioProducto.email %></p>
+								<p>Subido por: <a href="/users/myprofile/<%=products[i].usuarioProducto.id%>"><%= products[i].usuarioProducto.email %></a></p>
 							</article>
 						</a>
 					</section>
