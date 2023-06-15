@@ -56,7 +56,8 @@ procesarEditar: function(req,res){
 
 producto.findByPk(id)
 .then(function(data){
-  if (req.session.userLogueado == data.usuario){
+  if (req.session.userLogueado == data.usuario){ //tiene que coinsidir clienteId == req.session.userLogueado.id, pero cuando lo camibio me sale error port 3000 already in use
+
     producto.update({
       fotoProducto : req.body.picture,
       nombreProducto: req.body.product,
@@ -87,7 +88,7 @@ let criterio ={
     }
 producto.findByPk(idProducto, criterio)
 .then(function(data){
-  if( req.session.usuario == data.usuario) {
+  if( req.session.usuario == data.usuario) { //mismo error con la condicion
     producto.destroy({where: [{id: id}]})
     res.redirect('/')
   }
