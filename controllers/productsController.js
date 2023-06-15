@@ -82,7 +82,7 @@ const productsController = {
     
     Producto.destroy({ where: { idProducto: idborrar } })
     .then(()=>{
-      res.redirect('/')
+       res.redirect('/')
     })
     .catch(function(error){
       console.log(error)

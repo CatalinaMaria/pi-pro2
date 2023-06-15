@@ -199,6 +199,13 @@ hr {
   margin: 20px 0;
 }
 
+.botonEliminar{
+  background-color: #9fc1ad;
+  color: black;
+  padding: 8px 10px;
+  border: none;
+  cursor: pointer ;
+}
 .product-box a {
   display: block;
 }
