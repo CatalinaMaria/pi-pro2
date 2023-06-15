@@ -22,42 +22,8 @@ const usersController = {
         console.log(error)
       })
   },
-  // editar: function (req, res) { //editar el usuario
-  //   let id = req.params.id
-  //   Usuario.findByPk(id)
-  //     .then(function (data) {
-  //       return res.render('profile-edit', { data: data })
-  //     })
-  // },
-  // editarPost: function (req, res) { //editar el post
-  //   let id = req.body.id
+  
 
-  //   Usuario.findByPk(id)
-  //     .then(function (data) {
-  //       if (req.session.idUser == data.id) {
-  //         usuario.update({
-  //           email: req.body.mail,
-  //           usuario: req.body.nombre,
-  //           password: req.body.contrasenia,
-  //           fecha: req.body.fechanacimiento,
-  //           foto: req.body.fotoperfil,
-
-  //         }, { where: [{ id: id }] })
-  //         res.redirect('/')
-  //       }
-  //       else {
-  //         let errors = {}
-  //         errors.message = "No se puede editar este perfil"
-  //         res.locals.errors = errors;
-  //         return res.render('profile-edit', { data: data })
-  //       }
-
-  //     })
-  //     .catch(function (error) {
-  //       res.send({ error })
-  //       console.log(error);
-  //     })
-  // },
 
   register: function (req, res) { //registro
     res.render('register')
@@ -155,10 +121,7 @@ const usersController = {
         return res.render("login")
         }
       })
-    // let encriptada = bcryptjs.hashSync("123", 12)
-    // let check = bcryptjs.compareSync(req.body.password, encriptada)
-    // res.send({clave:check})
-
+   
   },
 
 
@@ -174,21 +137,7 @@ const usersController = {
     .then(function(data){
     return res.render("profile-edit", {data:data})
   })},
-    // let user = req.params.id
-
-    // Usuario.findByPk(user, {
-    //   include: [
-    //     {association: "productoUsuario"}
-    //   ]
-    // }) 
-    // .then((data)=> {
-    //   console.log(data);
-    //   return res.render('profile-edit', {data, error: null} )
-    // })  
-    // .catch((error)=>{
-    //   return console.log(error)
-    // })
-  
+   
 
   guardarProfileEdit: function( req,res){
     let userId = req.params.id
