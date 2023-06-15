@@ -15,6 +15,9 @@ router.post("/perfil", usersController.store);
 router.get("/editarperfil/:id", usersController.editar);
 router.post('/editarperfil', usersController.editarPost)
 
+router.get('/profile-edit/:id', usersController.profileEdit);
+router.post('/profile-edit/:id', usersController.guardarProfileEdit);
+
 router.post('/logout', usersController.logout);
 
 

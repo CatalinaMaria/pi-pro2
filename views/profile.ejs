@@ -18,7 +18,10 @@
 			<div class="data-container col-6">
 				<div class="d-flex align-items-center ">
 					<h1 class="main-title"><%- data.usuario %> 
-						<a href="/users/edit">
+						<form action="/users/profile-edit" class="submit" method="get">
+                         <button type="submit" class="botonEliminar">Editar</button>
+						</form>
+						<a href="/users/profile-edit">
 							<i class="fas fa-cog"></i>
 						</a>
 					</h1>

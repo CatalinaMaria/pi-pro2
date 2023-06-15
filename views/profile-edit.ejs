@@ -15,7 +15,7 @@
 			<!-- Show the "ultimos" products -->
 			<h2 class="col-12"> 
 
-					<form action="/users/myprofile/store" method="POST" class="form-registro col-12">
+					<form action="/users/profile-edit/<%- usuarios.id  %>" method="POST" class="form-registro col-12">
 						<div class="campos">
 						<label for="" name="correo" class="" >Email:</label>
 						<input type="email" name="mail" class="control" value="<%- usuarios.email %>">
@@ -25,8 +25,6 @@
 						<input type="contraseña" name="password" class="control" value="<%- usuarios.contrasenia %>">
 						<label for="" name="día" class="">Fecha de nacimiento:</label>
 						<input type="date" name="fecha" class="control" value="<%- usuarios.fechanacimiento %>">
-						<label for="" name="dni" class="">DNI:</label>
-						<input type="number" name="documento" class="control" value="<%- usuarios.dni %>">
 						<label for="" name="foto" class="">Foto de perfil:</label>
 						<input type="file" name="pic" class="control" value="<%- usuarios.fotoperfil %>">
 						</div>

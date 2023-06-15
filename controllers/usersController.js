@@ -166,6 +166,69 @@ const usersController = {
     req.session.destroy()   // destruye la session
     res.clearCookie('user')
     return res.redirect('/')
+  },
+
+  profileEdit: function(req,res){
+    let user = req.params.id
+
+    Usuario.findByPk(user, {
+      include: [
+        {association: "productoUsuario"}
+      ]
+    }) 
+    .then((data)=> {
+      console.log(data);
+      return res.render('profile-edit', {data, error: null} )
+    })  
+    .catch((error)=>{
+      return console.log(error)
+    })
+  },
+
+  guardarProfileEdit: function( req,res){
+    let userId = req.params.id
+    let password = req.body.password
+
+    Usuario.findByPk(userId)
+    .then(function(data){
+      if( password == ""){
+        Usuario.update({
+          usuario: req.body.usuario,
+          email: req.body.mail,
+          fecha: req.body.fecha,
+          fotoPerfil: req.body.foto
+        }, {where: {id: userId}})
+        .then(function(data){
+          res.redirect('/')
+        })
+        .catch(function(error){
+          console.log(error)
+        })
+      } else{
+        let contraseñaNueva = req.body.password
+        if(contraseñaNueva.length  <3){
+          return res.render('profile-edit', {data, error: "la contrasenia debe tener al menos 3 caracteres"})
+        } else{
+          let contraseñaNuevaEncriptada = bcrypt.hashSync(contraseñaNueva, 10)
+           Usuario.update({
+            usuario: req.body.user,
+            email: req.body.mail,
+            password: contraseñaNuevaEncriptada,
+            fecha: req.body.fecha,
+            fotoPerfil: req.body.pic
+           }, {where: {id: userId}})
+           .then(function(data){
+            res.redirect('/')
+           })
+           .catch(function(error){
+            console.log(error)
+           })
+        }
+      }
+    })
+    .catch(function(error){
+      console.log(error)
+    })
   }
 }
 
