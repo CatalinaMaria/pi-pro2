@@ -44,6 +44,64 @@ const productsController = {
       }
       
 },
+editar: function(req,res){
+producto.findByPk(req.params.idProducto)
+.then(function(data){
+  res.render('product-edit',{data: data} )
+})
+},
+
+procesarEditar: function(req,res){
+  let id = req.params.idProducto
+
+producto.findByPk(id)
+.then(function(data){
+  if (req.session.userLogueado == data.usuario){
+    producto.update({
+      fotoProducto : req.body.picture,
+      nombreProducto: req.body.product,
+      descripcion: req.body.description
+    }, {where: [{id: id}]})
+    res.redirect('/')
+  } else{
+    let errors = errors;
+    res.locals.errors = errors;
+    return res.render('product-edit', {data: data, comentarios: data.comentarios})
+  }
+})
+.catch(function(errors){
+ res.send({errors})
+ console.log(errors)
+})
+},
+
+borrar: function (req, res){
+let idProducto = req.params.idProducto // en el formulario no se carga un id por eso pongo params y no .body
+let criterio ={
+  include: [
+        {association: "usuarioProducto"},
+        {association: "productoComentarios",
+            include: [{association: "usuarioComentario"}]  
+        }
+      ], 
+    }
+producto.findByPk(idProducto, criterio)
+.then(function(data){
+  if( req.session.usuario == data.usuario) {
+    producto.destroy({where: [{id: id}]})
+    res.redirect('/')
+  }
+  else{
+    let errors = {};
+    errors.message = "Este producto no puede ser eliminado"
+    res.locals.errors = errors;
+    return res.reder('product', {data: data, comentarios: data.comentarios})
+  }
+})
+.catch(function (errors){
+  console.log(errors)
+}) 
+},
 };
 
 module.exports = productsController;

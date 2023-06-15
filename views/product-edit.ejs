@@ -1,0 +1,39 @@
+<%- include('./partials/head.ejs') %>	
+<body>
+	<!-- Header -->
+	<% if (locals.userLogueado != null) { %>
+		<%- include('./partials/headerLogueado.ejs') %>
+  <% } else { %>
+		<%- include('./partials/headernoLogueado.ejs')	%>
+  <% } %>  
+	<!-- /Header -->
+
+	<!-- Novedades -->
+	<div class="container products-wrapper">
+		<div class="row">
+			
+			<!-- Show the "ultimos" products -->
+			<h2 class="col-12"> 
+
+				<div class="form-registro">
+					<form action="/products/editarproducto" method="post" class="formulario">
+						<h4 class="products-title">Editar el producto</h4>
+						<div class="campos">
+						<label for="" name="correo" >Imagen</label>
+						<input type="text" name="picture"  class="control" value="">
+						<label for="" name = "user">Nombre del producto:</label>
+						<input type="text" name="product" class="control" value="">
+						<label for="" name="pass">Descripción:</label>
+						<input type="text" name="description" class="control" value="">
+						<button class="boton" type="submit">Editar el Producto</button>
+					</form>
+				</div>
+			</h2>
+
+
+	<!-- footer -->
+	<%- include('./partials/footer.ejs') %>
+	<!-- /footer -->
+</body>
+
+</html>

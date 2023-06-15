@@ -4,9 +4,12 @@ const productsController = require('../controllers/productsController');
 
 router.get('/detalle/:id', productsController.product);
 router.get('/add', productsController.productadd);
-// router.get('/add/create', productsController.create);
 router.post('/add', productsController.addProduct);
-// router.get('/detalle/:id/create', productsController.create);
-// router.post('/detalle/:id/store', productsController.store);
+router.post('/borrar', productsController.borrar);
+router.get('/editarproducto', productsController.editar)
+router.post('/editarproducto', productsController.procesarEditar);
+router.get('/editarproducto/:id', productsController.editar);
+
+
 
 module.exports = router;

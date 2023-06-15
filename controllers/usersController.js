@@ -161,47 +161,6 @@ const usersController = {
 
   },
 
-  //(req, res) => {
-  //   let errors = {};
-  //   let info = req.body;
-  //   let criterio = { where: [{ email: info.mail }] }
-
-
-  //   if (info.mail == "") {
-  //     errors.message = "El campo email esta vacio";
-  //     res.locals.errors = errors;
-  //     return res.render("login")
-  //   } else if (info.password == "") {
-  //     errors.message = "El campo contraseña esta vacio";
-  //     res.locals.errors = errors;
-  //     return res.render("login")
-  //   } else {
-  //     let criterio = { where: [{ email: info.mail }] }
-  //   }
-
-  //   usuario.findOne(criterio)
-  //     .then(result => {
-  //       if (result != null) { //si el usuario existe
-  //         let check = bcryptjs.compareSync(password, result.contraseña);
-  //         if (check == true) {
-  //           req.session.usuario = {
-  //             email: result.dataValues.mail,
-  //           };
-  //           res.locals.usuario = result.dataValues
-  //         }
-  //         if (info.rememberMe) {
-  //           res.cookie("userId", { email: result.dataValues.mail }, { maxAge: 1000 * 60 * 10 })
-  //         } return res.redirect('/')
-  //       } else {
-  //         errors.message = "El email no existe";
-  //         res.locals.errors = errors;
-  //         return res.render('login')
-  //       }
-  //     }).catch(errors => {
-  //       res.send(errors)
-  //     })
-
-  // },
 
   logout: function (req, res) {
     req.session.destroy()   // destruye la session
