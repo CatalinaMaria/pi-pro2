@@ -47,10 +47,15 @@
 							</article> <% } %>
 				
 					</section>
-					<form class="form" action="/products/detalle/<%= products.idProducto %>" method="post">
-						<input class="form-input" name="textocomentario" type="text" value="" placeholder="Agregar comentario">
-						<button type="submit" class="buy-now-button">Agregar Comentario</button>
-					</form>
+					<% if (locals.userLogueado != undefined) {%>
+						<form class="form" action="/products/detalle/<%= products.idProducto %>" method="post">
+							<input class="form-input" name="textocomentario" type="text" value="" placeholder="Agregar comentario">
+							<button type="submit" class="buy-now-button">Agregar Comentario</button>
+						</form>
+						<%} else{%>
+								<button type="submit" class="buy-now-button">Debe estar logueado para comentar</button>
+							<%}%>
+						
 					<% if (locals.errors) { %>
 						<p class="error"><%= errors.message %></p>
 						<%} %>
