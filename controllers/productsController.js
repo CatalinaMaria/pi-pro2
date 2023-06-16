@@ -100,31 +100,31 @@ const productsController = {
      // })
   },
 
-  comentario: function (req,res) {
-    let idProducto = req.params.id;
-    let info = req.body.textocomentario;
-    // res.send(info)
-    Producto.findByPk(idProducto)
-    .then(data => {
-    // return res.send(data)
-      res.render('product', { products: data });
-            })
-    if (req.session.userLogueado != undefined) {
-    let comentarioNuevo = {
-      idProducto: idProducto,
-      idUsuario: req.session.userLogueado.id,
-      commentario: info,
-    }
-    Comentario.create(comentarioNuevo)
-    .then(function (req,res) {
-      return res.redirect('/')})
-  }else{
-    let errors = {};
-        errors.message = "Debe hacer login para comentar"
-        res.locals.errors = errors;
-        return res.render("product", )
-        }
-  }
+//   comentario: function (req,res) {
+//     let idProducto = req.params.id;
+//     let info = req.body.textocomentario;
+//     // res.send(info)
+//     Producto.findByPk(idProducto)
+//     .then(data => {
+//     // return res.send(data)
+//       res.render('product', { products: data });
+//             })
+//     if (req.session.userLogueado != undefined) {
+//     let comentarioNuevo = {
+//       idProducto: idProducto,
+//       idUsuario: req.session.userLogueado.id,
+//       commentario: info,
+//     }
+//     Comentario.create(comentarioNuevo)
+//     .then(function (req,res) {
+//       return res.redirect('/')})
+//   }else{
+//     let errors = {};
+//         errors.message = "Debe hacer login para comentar"
+//         res.locals.errors = errors;
+//         return res.render("product", )
+//         }
+//   }
 };
 
 

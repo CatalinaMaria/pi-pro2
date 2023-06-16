@@ -140,58 +140,68 @@ const usersController = {
    
 
   guardarProfileEdit: function( req,res){
-    let userId = req.params.id
-    let password = req.body.password
-
+    let userId = req.params.id;
+    let contraseñanueva = req.body.password;
+    
     Usuario.findByPk(userId)
     .then(function(data){
-      if( password == ""){
-        Usuario.update({
-          usuario: req.body.usuario,
-          email: req.body.mail,
-          fecha: req.body.fecha,
-          fotoPerfil: req.body.pic
-        }, {where: {id: userId}})
-        .then(function(data){
-          res.redirect('/')
-        })
-        .catch(function(error){
-          console.log(error)
-        })
-      } else{
-        let contraseñaNueva = req.body.password
-        if(contraseñaNueva.length  <3){
-          return res.render('profile-edit', {data, error: "la contraseña debe tener al menos 3 caracteres"})
-        } else{
-          let contraseñaNuevaEncriptada = bcryptjs.hashSync(contraseñaNueva, 12)
-           Usuario.update({
-            usuario: req.body.usuario,
-            email: req.body.mail,
-            contraseña: contraseñaNuevaEncriptada,
-            fecha: req.body.fecha,
-            fotoPerfil: req.body.pic
-           }, {where: {id: userId}})
-           .then(function(data){
-            res.redirect('/')
-           })
-           .catch(function(error){
-            console.log(error)
-           })
-        }
-      }
+      // return res.send(data)
+    if(contraseñanueva != data.contraseña){
+      contraseñanueva = bcryptjs.hashSync(contraseñanueva, 12)
+    }
+    // return res.send(contraseñanueva)
+   Usuario.update({
+    usuario: req.body.usuario,
+    email: req.body.mail,
+    contraseña: contraseñanueva,
+    fecha: req.body.fecha,
+    fotoPerfil: req.body.pic
+   }, {where: {id:userId}})
+  //  return res.send(data)
+   .then(function(data){
+    res.redirect('/')
+   })
+   .catch(function(error){
+    console.log(error)
+   })
+
     })
     .catch(function(error){
       console.log(error)
     })
+    
+    // req.session.destroy()
+    // Usuario.findByPk(userId)
+    // .then(function(datanueva){
+    //   // res.send(datanueva)
+    //   req.session.userLogueado = datanueva.dataValues;
+    // console.log(req.session.userLogueado ,'nola')
+    // if(req.locals != undefined){
+    //   req.locals.userLogueado = datanueva.dataValues;
+    //   console.log(locals.userLogueado, 'el locals!!!')
+    // }
+    // return res.redirect('/');
+    // })
+    
+    .catch(function(error){
+      console.log(error)
+    })
+   
+
+
+    
   }
+  
+
 }
 
-Usuario.findAll({
-  include: [
-    { association: "productoUsuario" },
-    { association: "comentarioUsuario" }
-  ]
-}).then(function (data) { console.log(data); })
+
+// Usuario.findAll({
+//   include: [
+//     { association: "productoUsuario" },
+//     { association: "comentarioUsuario" }
+//   ]
+// }).then(function (data) { console.log(data); })
 
 
 
