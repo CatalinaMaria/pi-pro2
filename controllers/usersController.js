@@ -142,10 +142,29 @@ const usersController = {
   guardarProfileEdit: function( req,res){
     let userId = req.params.id;
     let contraseñanueva = req.body.password;
-    
+  
     Usuario.findByPk(userId)
     .then(function(data){
       // return res.send(data)
+    let errors = {}; //para almacenar el error
+    if (req.body.mail == "") {
+      errors.message = "El campo email está vacío";
+      res.locals.errors = errors;
+      res.render("profile-edit", {data:data});
+    }
+
+    else if (req.body.usuario == "") {
+      errors.message = "El campo usuario está vacío";
+      res.locals.errors = errors;
+      res.render("profile-edit", {data:data});
+    }
+
+    else if (contraseñanueva.length < 3) {
+      errors.message = "Hay un error, el campo password debe tener 3 o mas caracteres";
+      res.locals.errors = errors;
+      res.render("profile-edit", {data:data})
+    }
+
     if(contraseñanueva != data.contraseña){
       contraseñanueva = bcryptjs.hashSync(contraseñanueva, 12)
     }
@@ -182,7 +201,7 @@ const usersController = {
     // }
     // return res.redirect('/');
     // })
-    
+
     .catch(function(error){
       console.log(error)
     })

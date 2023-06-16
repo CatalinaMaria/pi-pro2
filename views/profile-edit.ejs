@@ -14,6 +14,9 @@
 			</div>
 			<!-- Show the "ultimos" products -->
 			<h2 class="col-12"> 
+				<% if (locals.errors) { %>
+					<p class="error"><%= errors.message %></p>
+					<%} %>
 
 					<form action="/users/profile-edit/<%- data.id  %>" method="POST" class="form-registro col-12">
 						<div class="campos">
