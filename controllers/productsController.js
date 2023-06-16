@@ -10,6 +10,7 @@ let criterio = {
       include: [{ association: "usuarioComentario" }]
     }
   ],
+  order: [[{model:Comentario, as: 'productoComentarios'},'createdAt', 'DESC']]
 }
 const productsController = {
   product: function (req, res) {
@@ -112,7 +113,7 @@ const productsController = {
       })
       .then(function(data){
         let comentario = req.body.textocomentario;
-        console.log(data.id)
+        // console.log(data.id)
         Comentario.create({
           idProducto: idProducto,
           idUsuario: data.id,

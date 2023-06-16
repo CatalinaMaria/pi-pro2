@@ -33,10 +33,12 @@ app.use(session({ secret: "Mensaje secreto",
 app.use(function(req,res,next){
   if (req.session.userLogueado != undefined) {
     res.locals.userLogueado = req.session.userLogueado
+    return next();
   }
   else if(req.cookies.userLogueado != undefined){
     req.session.userLogueado = req.cookies.userLogueado;
     res.locals.userLogueado = req.sessions.userLogueado;
+    return next();
   }
   return next();
 })
@@ -46,8 +48,8 @@ app.use(function(req, res, next) {
       let idUsuarioEnCookie = req.cookies.user.id;
       db.Usuario.findByPk(idUsuarioEnCookie)
       .then((user) => {
-        req.session.Usuario = user;
-        res.locals.usuario  = user.usuario;
+        req.session.userLogueado = user;
+        res.locals.userLogueado  = user.usuario;
         return next();
       }).catch((err) => {
         console.log(err);

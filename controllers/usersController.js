@@ -88,13 +88,14 @@ const usersController = {
 
   ingresar: function (req, res) {
     let info = req.body;
+    // return res.send(info)
     let criterio = { where: [{ email: info.mail }] }
     Usuario.findOne(criterio)   //para ver si esta ese email
       .then(result => {     //mantenemos en result info que estamos recibiendo
         // return res.send(result)
         if (result != null) {
           let check = bcryptjs.compareSync(req.body.password, result.contraseña);   //valido que la password sea igual a result.contraseña
-          // return res.send(check) //ACA ESTA EL ERROR
+          // return res.send(check) 
           if (check == true) {            //si la clave coincide....
             req.session.userLogueado = result.dataValues;
             console.log(req.session.userLogueado ,'fede')
@@ -102,7 +103,7 @@ const usersController = {
               req.locals.userLogueado = result.dataValues;
               console.log(locals.userLogueado, 'el locals!!!')
             }
-            if (info.remember = "on") {
+            if (info.remember == "on") {
               res.cookie('user', result.dataValues, { maxAge: 1000 * 60 * 15 })
             }
             return res.redirect('/');
@@ -137,80 +138,82 @@ const usersController = {
     .then(function(data){
     return res.render("profile-edit", {data:data})
   })},
-   
-
   guardarProfileEdit: function( req,res){
     let userId = req.params.id;
-    let contraseñanueva = req.body.password;
-  
-    Usuario.findByPk(userId)
-    .then(function(data){
-      // return res.send(data)
+    let contrasenanueva = req.body.password;
+
+    let dataUser = {
+      id: userId,
+      email: req.body.mail,
+      usuario: req.body.usuario,
+      fecha: req.body.fecha, 
+      fotoPerfil: req.body.pic
+    }
+   
     let errors = {}; //para almacenar el error
     if (req.body.mail == "") {
       errors.message = "El campo email está vacío";
       res.locals.errors = errors;
-      res.render("profile-edit", {data:data});
+      res.render('profile-edit', {data: dataUser});
     }
 
     else if (req.body.usuario == "") {
       errors.message = "El campo usuario está vacío";
       res.locals.errors = errors;
-      res.render("profile-edit", {data:data});
+      res.render('profile-edit', {data: dataUser});
     }
 
-    else if (contraseñanueva.length < 3) {
+    else if (contrasenanueva.length < 3 && contrasenanueva.length > 0) {
       errors.message = "Hay un error, el campo password debe tener 3 o mas caracteres";
       res.locals.errors = errors;
-      res.render("profile-edit", {data:data})
+      res.render('profile-edit', {data: dataUser});
     }
 
-    if(contraseñanueva != data.contraseña){
-      contraseñanueva = bcryptjs.hashSync(contraseñanueva, 12)
+    let objUsuario = {
+      usuario: req.body.usuario,
+      email: req.body.mail,
+      fecha: req.body.fecha,
+      fotoPerfil: req.body.pic
     }
-    // return res.send(contraseñanueva)
+
+    let filtro = {
+        where: [
+          {id: userId}
+        ]
+    }
+
+    if (contrasenanueva != "") {
+      let passEncriptada = bcryptjs.hashSync(contrasenanueva, 12);
+      objUsuario.contraseña = passEncriptada
+    }
+    
+
+    Usuario.update(objUsuario, filtro)
+    .then(function(data){
+      res.locals.userLogueado.usuario = req.body.usuario;
+      res.redirect('/')
+     })
+     .catch(function(error){
+      console.log(error)
+     })
+
+   /* if(contraseñanueva != ""){
+      contraseñanueva = bcryptjs.hashSync(contraseñanueva, 12)
+      Usuario.update({
+        contraseña: contraseñanueva,
+      }, {where: {id:userId}})
+    }
+    
    Usuario.update({
     usuario: req.body.usuario,
     email: req.body.mail,
-    contraseña: contraseñanueva,
     fecha: req.body.fecha,
     fotoPerfil: req.body.pic
-   }, {where: {id:userId}})
+   }, {where: {id:userId}}) */
+
   //  return res.send(data)
-   .then(function(data){
-    res.redirect('/')
-   })
-   .catch(function(error){
-    console.log(error)
-   })
-
-    })
-    .catch(function(error){
-      console.log(error)
-    })
-    
-    // req.session.destroy()
-    // Usuario.findByPk(userId)
-    // .then(function(datanueva){
-    //   // res.send(datanueva)
-    //   req.session.userLogueado = datanueva.dataValues;
-    // console.log(req.session.userLogueado ,'nola')
-    // if(req.locals != undefined){
-    //   req.locals.userLogueado = datanueva.dataValues;
-    //   console.log(locals.userLogueado, 'el locals!!!')
-    // }
-    // return res.redirect('/');
-    // })
-
-    .catch(function(error){
-      console.log(error)
-    })
    
 
-
-    
-  }
-  
 
 }
 
@@ -223,5 +226,6 @@ const usersController = {
 // }).then(function (data) { console.log(data); })
 
 
+}
 
 module.exports = usersController;
