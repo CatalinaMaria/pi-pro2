@@ -1,41 +1,57 @@
-<%- include('./partials/head.ejs') %>	
-<body>
-	<!-- Header -->
-	<% if (locals.userLogueado != null) { %>
-		<%- include('./partials/headerLogueado.ejs') %>
-  <% } else { %>
-		<%- include('./partials/headernoLogueado.ejs')	%>
-  <% } %>  
-	<!-- /Header -->
+<%- include('./partials/head.ejs') %>
 
-	<!-- Novedades -->
-	<div class="container products-wrapper">
-		<div class="row">
-			
-			<!-- Show the "ultimos" products -->
-			<h2 class="col-12"> 
-				<% if (locals.errors) { %>
-					<p class="error"><%= errors.message %></p>
-					<%} %>
-				<div class="form-registro">
-					<form action="/products/editarproducto/<%= data.idProducto %>" method="post" class="formulario">
-						<h4 class="products-title">Editar el producto</h4>
-						<div class="campos">
-						<label for="" name="correo" >Imagen</label>
-						<input type="text" name="picture"  class="control" value="<%= data.imagen %>">
-						<label for="" name = "user">Nombre del producto:</label>
-						<input type="text" name="product" class="control" value="<%= data.nombreProducto %>">
-						<label for="" name="pass">Descripción:</label>
-						<input type="text" name="description" class="control" value="<%= data.descripcion %>">
-						<button class="boton" type="submit">Editar el Producto</button>
-					</form>
-				</div>
-			</h2>
+	<body>
+		<!-- Header -->
+		<% if (locals.userLogueado !=null) { %>
+			<%- include('./partials/headerLogueado.ejs') %>
+				<% } else { %>
+					<%- include('./partials/headernoLogueado.ejs') %>
+						<% } %>
+							<!-- /Header -->
+
+							<!-- Novedades -->
+							<div class="container products-wrapper">
+								<div class="row">
+
+									<!-- Show the "ultimos" products -->
+									<% if (locals.userLogueado !=undefined && locals.userLogueado.id==data.clienteId)
+										{%>
+										<h2 class="col-12">
+											<% if (locals.errors) { %>
+												<p class="error">
+													<%= errors.message %>
+												</p>
+												<%} %>
+													<div class="form-registro">
+														<form action="/products/editarproducto/<%= data.idProducto %>"
+															method="post" class="formulario">
+															<h4 class="products-title">Editar el producto</h4>
+															<div class="campos">
+																<label for="" name="correo">Imagen</label>
+																<input type="text" name="picture" class="control"
+																	value="<%= data.imagen %>">
+																<label for="" name="user">Nombre del producto:</label>
+																<input type="text" name="product" class="control"
+																	value="<%= data.nombreProducto %>">
+																<label for="" name="pass">Descripción:</label>
+																<input type="text" name="description" class="control"
+																	value="<%= data.descripcion %>">
+																<button class="boton" type="submit">Editar el
+																	Producto</button>
+														</form>
+													</div>
+										</h2>
+										<% } else{ %>
+											<p class="error">No puede editar este producto ya que no esta subido por
+												usted</p>
+											<% } %>
 
 
-	<!-- footer -->
-	<%- include('./partials/footer.ejs') %>
-	<!-- /footer -->
-</body>
 
-</html>
+
+												<!-- footer -->
+												<%- include('./partials/footer.ejs') %>
+													<!-- /footer -->
+	</body>
+
+	</html>

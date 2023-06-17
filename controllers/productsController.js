@@ -2,25 +2,26 @@ const db = require("../database/models");
 const Producto = db.Product;
 const Usuario = db.Usuario;
 const Comentario = db.Comentario;
-//mostrar los datos del usuario que comenta. Si se puede.
+
 let criterio = {
   include: [
     { association: "usuarioProducto" },
-    {association: "productoComentarios",
+    {
+      association: "productoComentarios",
       include: [{ association: "usuarioComentario" }]
     }
   ],
-  order: [[{model:Comentario, as: 'productoComentarios'},'createdAt', 'DESC']]
+  order: [[{ model: Comentario, as: 'productoComentarios' }, 'createdAt', 'DESC']]
 }
 const productsController = {
   product: function (req, res) {
     let id = req.params.id;
     let criteriocomment = {
       where: [{ idProducto: id }],
-      include: [{ association: "usuarioComentario"}],
-      order:[['idProducto', 'DESC']]
+      include: [{ association: "usuarioComentario" }],
+      order: [['idProducto', 'DESC']]
     }
-    
+
     Producto.findByPk(id, criterio)
       .then(data => {
         // return res.send(data)
@@ -69,13 +70,13 @@ const productsController = {
     Producto.findByPk(ideditar)
       .then(data => {
         // return res.send(data)
-          let info = req.body
-          Producto.update({
-            imagen: info.picture,
-            nombreProducto: info.product,
-            descripcion: info.description
-          }, { where: [{ idProducto: ideditar }] })
-          res.redirect('/')
+        let info = req.body
+        Producto.update({
+          imagen: info.picture,
+          nombreProducto: info.product,
+          descripcion: info.description
+        }, { where: [{ idProducto: ideditar }] })
+        res.redirect('/')
       })
       .catch(function (errors) {
         res.send({ errors })
@@ -85,55 +86,39 @@ const productsController = {
 
   borrar: function (req, res) {
     let idborrar = req.params.id; // en el formulario no se carga un id por eso pongo params y no .body
-    
+
     Producto.destroy({ where: { idProducto: idborrar } })
-    .then(()=>{
-       res.redirect('/')
-    })
-    .catch(function(error){
-      console.log(error)
-      res.redirect('/')
-    })
-    //Producto.findByPk(idborrar)
-     // .then(function (data) {
-        // res.send(data)
-       //   Producto.destroy({ where: [{ idProducto: idborrar }] })
-        //  res.redirect('/')
-        
-      //})
-      //.catch(function (errors) {
-       // console.log(errors)
-     // })
+      .then(() => {
+        res.redirect('/')
+      })
+      .catch(function (error) {
+        console.log(error)
+        res.redirect('/')
+      })
   },
-  comentario: function(req, res){
+  comentario: function (req, res) {
     let idProducto = req.params.id
-    if(req.session.userLogueado != undefined){
+    if (req.session.userLogueado != undefined) {
       Usuario.findOne({
-        where: [{usuario: req.session.userLogueado.usuario}]
+        where: [{ usuario: req.session.userLogueado.usuario }]
       })
-      .then(function(data){
-        let comentario = req.body.textocomentario;
-        // console.log(data.id)
-        Comentario.create({
-          idProducto: idProducto,
-          idUsuario: data.id,
-          commentario: comentario,
+        .then(function (data) {
+          let comentario = req.body.textocomentario;
+          // console.log(data.id)
+          Comentario.create({
+            idProducto: idProducto,
+            idUsuario: data.id,
+            commentario: comentario,
+          })
+          return res.redirect('/')
         })
-        Producto.findByPk(idProducto, criterio)
-              .then(data => {
-                // res.render('product', { products: data });
-                // return res.redirect('/products/detalle/' + idProducto)
-              })
-        
-        return res.redirect('/')
-      })
     }
-    else{
+    else {
       let errors = {};
-          errors.message = "Debe estar logueado para poder comentar"
-         res.locals.errors = errors;
-         return res.render('product')
-         }
+      errors.message = "Debe estar logueado para poder comentar"
+      res.locals.errors = errors;
+      return res.render('product')
+    }
   }
 };
 

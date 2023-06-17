@@ -1,33 +1,39 @@
-<%- include('./partials/head.ejs') %>	
+<%- include('./partials/head.ejs') %>
 
-<body>
-	<!-- Header -->
-	<%- include('./partials/headernoLogueado.ejs') %>
-	<!-- /Header -->
+	<body>
+		<!-- Header -->
+		<%- include('./partials/headernoLogueado.ejs') %>
+			<!-- /Header -->
 
-	<!-- Novedades -->
-	<div class="container products-wrapper">
-		<div class="row">
-			<!-- Show the "ultimos" products -->
-			<!-- ACA EL FORMULARIO!! -->
-			
-			<% if (locals.errors) { %>
-				<p class="error"><%= errors.message %></p>
-				<%} %>
-		<form action='/users/register' method="post" class="form-registro col-12">
-			<h4 class="products-title" > Registrate </h4>
-			<input type="email" name="mail" value="" class="control" placeholder="Ingrese email">
-			<input type="text" name="usuario" value="" class="control" placeholder="Nombre de usuario">
-			<input type="contraseña" name="password" value="" class="control" placeholder="Ingrese contraseña">
-			<input type="date" name="fecha" value="" class="control" placeholder="Ingrese fecha de nacimiento">
-			<input type="text" name="foto" value="" class="control" placeholder="Url de foto de perfil" >
-			<button class="boton" type="submit">Finalizar Registro</button>
-		</form>
-		</div>
+			<!-- Novedades -->
+			<div class="container products-wrapper">
+				<div class="row">
+					<!-- Show the "ultimos" products -->
+					<!-- ACA EL FORMULARIO!! -->
 
-	<!-- footer -->
-	<%- include('./partials/footer.ejs') %>
-	<!-- /footer -->
-</body>
+					<% if (locals.errors) { %>
+						<p class="error">
+							<%= errors.message %>
+						</p>
+						<%} %>
+							<form action='/users/register' method="post" class="form-registro col-12">
+								<h4 class="products-title"> Registrate </h4>
+								<input type="email" name="mail" value="" class="control" placeholder="Ingrese email">
+								<input type="text" name="usuario" value="" class="control"
+									placeholder="Nombre de usuario">
+								<input type="contraseña" name="password" value="" class="control"
+									placeholder="Ingrese contraseña">
+								<input type="date" name="fecha" value="" class="control"
+									placeholder="Ingrese fecha de nacimiento">
+								<input type="text" name="foto" value="" class="control"
+									placeholder="Url de foto de perfil">
+								<button class="boton" type="submit">Finalizar Registro</button>
+							</form>
+				</div>
 
-</html>
+				<!-- footer -->
+				<%- include('./partials/footer.ejs') %>
+					<!-- /footer -->
+	</body>
+
+	</html>

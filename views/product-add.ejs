@@ -1,40 +1,40 @@
-<%- include('./partials/head.ejs') %>	
+<%- include('./partials/head.ejs') %>
 
-<body>
-	<!-- Header -->
-	<% if (locals.userLogueado != null) { %>
-		<%- include('./partials/headerLogueado.ejs') %>
-  <% } else { %>
-		<%- include('./partials/headernoLogueado.ejs')	%>
-  <% } %>  
-	<!-- /Header -->
+	<body>
+		<!-- Header -->
+		<% if (locals.userLogueado !=null) { %>
+			<%- include('./partials/headerLogueado.ejs') %>
+				<% } else { %>
+					<%- include('./partials/headernoLogueado.ejs') %>
+						<% } %>
+							<!-- /Header -->
 
-	<!-- Novedades -->
-	<div class="container products-wrapper">
-		<div class="row">
-			
-			<!-- Show the "ultimos" products -->
-			<h2 class="col-12"> 
+							<!-- Novedades -->
+							<div class="container products-wrapper">
+								<div class="row">
 
-				<div class="form-registro">
-					<form action="/products/add" method="post" class="formulario">
-						<h4 class="products-title">Agregar productos</h4>
-						<div class="campos">
-						<label for="" name="correo" >Imagen</label>
-						<input type="text" name="picture"  class="control" value="">
-						<label for="" name = "user">Nombre del producto:</label>
-						<input type="text" name="product" class="control" value="">
-						<label for="" name="pass">Descripción:</label>
-						<input type="text" name="description" class="control" value="">
-						<button class="boton" type="submit">Agregar Producto</button>
-					</form>
-				</div>
-			</h2>
+									<!-- Show the "ultimos" products -->
+									<h2 class="col-12">
+
+										<div class="form-registro">
+											<form action="/products/add" method="post" class="formulario">
+												<h4 class="products-title">Agregar productos</h4>
+												<div class="campos">
+													<label for="" name="correo">Imagen</label>
+													<input type="text" name="picture" class="control" value="">
+													<label for="" name="user">Nombre del producto:</label>
+													<input type="text" name="product" class="control" value="">
+													<label for="" name="pass">Descripción:</label>
+													<input type="text" name="description" class="control" value="">
+													<button class="boton" type="submit">Agregar Producto</button>
+											</form>
+										</div>
+									</h2>
 
 
-	<!-- footer -->
-	<%- include('./partials/footer.ejs') %>
-	<!-- /footer -->
-</body>
+									<!-- footer -->
+									<%- include('./partials/footer.ejs') %>
+										<!-- /footer -->
+	</body>
 
-</html>
+	</html>

@@ -22,15 +22,14 @@ const usersController = {
         console.log(error)
       })
   },
-  
+
 
 
   register: function (req, res) { //registro
     res.render('register')
   },
   store: function (req, res) {
-    //res.send({data: req.body})
-    let errors = {}; //para almacenar el error
+    let errors = {}; 
     if (req.body.mail == "") {
       errors.message = "El campo email está vacío";
       res.locals.errors = errors;
@@ -69,7 +68,6 @@ const usersController = {
               fecha: req.body.fecha,
               fotoPerfil: req.body.foto
             }
-            // res.send(user);
             Usuario.create(user);
             res.redirect('/users/login')
           }
@@ -90,16 +88,15 @@ const usersController = {
     let info = req.body;
     // return res.send(info)
     let criterio = { where: [{ email: info.mail }] }
-    Usuario.findOne(criterio)   //para ver si esta ese email
-      .then(result => {     //mantenemos en result info que estamos recibiendo
+    Usuario.findOne(criterio)   
+      .then(result => {     
         // return res.send(result)
         if (result != null) {
           let check = bcryptjs.compareSync(req.body.password, result.contraseña);   //valido que la password sea igual a result.contraseña
-          // return res.send(check) 
           if (check == true) {            //si la clave coincide....
             req.session.userLogueado = result.dataValues;
-            console.log(req.session.userLogueado ,'fede')
-            if(req.locals != undefined){
+            console.log(req.session.userLogueado, 'session')
+            if (req.locals != undefined) {
               req.locals.userLogueado = result.dataValues;
               console.log(locals.userLogueado, 'el locals!!!')
             }
@@ -114,15 +111,15 @@ const usersController = {
             res.locals.errors = errors;
             res.render("login")
           }
-        } 
-        else{
+        }
+        else {
           let errors = {};
-        errors.message = "Mail no esta registrado"
-        res.locals.errors = errors;
-        return res.render("login")
+          errors.message = "Mail no esta registrado"
+          res.locals.errors = errors;
+          return res.render("login")
         }
       })
-   
+
   },
 
 
@@ -132,13 +129,14 @@ const usersController = {
     return res.redirect('/')
   },
 
-  profileEdit: function(req,res){
-    let id= req.params.id
+  profileEdit: function (req, res) {
+    let id = req.params.id
     Usuario.findByPk(id)
-    .then(function(data){
-    return res.render("profile-edit", {data:data})
-  })},
-  guardarProfileEdit: function( req,res){
+      .then(function (data) {
+        return res.render("profile-edit", { data: data })
+      })
+  },
+  guardarProfileEdit: function (req, res) {
     let userId = req.params.id;
     let contrasenanueva = req.body.password;
 
@@ -146,27 +144,27 @@ const usersController = {
       id: userId,
       email: req.body.mail,
       usuario: req.body.usuario,
-      fecha: req.body.fecha, 
+      fecha: req.body.fecha,
       fotoPerfil: req.body.pic
     }
-   
-    let errors = {}; //para almacenar el error
+
+    let errors = {}; // almacena error
     if (req.body.mail == "") {
       errors.message = "El campo email está vacío";
       res.locals.errors = errors;
-      res.render('profile-edit', {data: dataUser});
+      res.render('profile-edit', { data: dataUser });
     }
 
     else if (req.body.usuario == "") {
       errors.message = "El campo usuario está vacío";
       res.locals.errors = errors;
-      res.render('profile-edit', {data: dataUser});
+      res.render('profile-edit', { data: dataUser });
     }
 
     else if (contrasenanueva.length < 3 && contrasenanueva.length > 0) {
       errors.message = "Hay un error, el campo password debe tener 3 o mas caracteres";
       res.locals.errors = errors;
-      res.render('profile-edit', {data: dataUser});
+      res.render('profile-edit', { data: dataUser });
     }
 
     let objUsuario = {
@@ -177,55 +175,26 @@ const usersController = {
     }
 
     let filtro = {
-        where: [
-          {id: userId}
-        ]
+      where: [
+        { id: userId }
+      ]
     }
 
     if (contrasenanueva != "") {
       let passEncriptada = bcryptjs.hashSync(contrasenanueva, 12);
       objUsuario.contraseña = passEncriptada
     }
-    
+
 
     Usuario.update(objUsuario, filtro)
-    .then(function(data){
-      res.locals.userLogueado.usuario = req.body.usuario;
-      res.redirect('/')
-     })
-     .catch(function(error){
-      console.log(error)
-     })
-
-   /* if(contraseñanueva != ""){
-      contraseñanueva = bcryptjs.hashSync(contraseñanueva, 12)
-      Usuario.update({
-        contraseña: contraseñanueva,
-      }, {where: {id:userId}})
-    }
-    
-   Usuario.update({
-    usuario: req.body.usuario,
-    email: req.body.mail,
-    fecha: req.body.fecha,
-    fotoPerfil: req.body.pic
-   }, {where: {id:userId}}) */
-
-  //  return res.send(data)
-   
-
-
-}
-
-
-// Usuario.findAll({
-//   include: [
-//     { association: "productoUsuario" },
-//     { association: "comentarioUsuario" }
-//   ]
-// }).then(function (data) { console.log(data); })
-
-
+      .then(function (data) {
+        res.locals.userLogueado.usuario = req.body.usuario;
+        res.redirect('/')
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+  }
 }
 
 module.exports = usersController;
