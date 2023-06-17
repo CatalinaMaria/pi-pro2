@@ -2,7 +2,11 @@
 
 	<body>
 		<!-- Header -->
-		<%- include('./partials/headernoLogueado.ejs') %>
+		<% if (locals.userLogueado !=null) { %>
+			<%- include('./partials/headerLogueado.ejs') %>
+				<% } else { %>
+					<%- include('./partials/headernoLogueado.ejs')%>
+						<% } %>
 			<!-- /Header -->
 
 			<!-- Novedades -->
@@ -10,7 +14,7 @@
 				<div class="row">
 					<!-- Show the "ultimos" products -->
 					<!-- ACA EL FORMULARIO!! -->
-
+					<% if (locals.userLogueado ==undefined ) {%>
 					<% if (locals.errors) { %>
 						<p class="error">
 							<%= errors.message %>
@@ -29,6 +33,9 @@
 									placeholder="Url de foto de perfil">
 								<button class="boton" type="submit">Finalizar Registro</button>
 							</form>
+							<%} else {%>
+								<p class="error">No puede registrarse si ya esta logueado, cierre sesion porfavor</p>
+								<%}%>
 				</div>
 
 				<!-- footer -->
