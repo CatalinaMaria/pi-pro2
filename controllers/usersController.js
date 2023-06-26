@@ -28,6 +28,7 @@ const usersController = {
   register: function (req, res) { //registro
     res.render('register')
   },
+  
   store: function (req, res) {
     let errors = {}; 
     if (req.body.mail == "") {
